@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scénario Pédagogique — Hôtel Le Prieuré</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',sans-serif;background:#f4f6f9;color:#2c3e50;}
+  .cover{background:linear-gradient(135deg,#1a3a5c,#2e7d6b);color:white;padding:50px 40px;text-align:center;}
+  .cover h1{font-size:2em;margin-bottom:10px;letter-spacing:1px;}
+  .cover h2{font-size:1.2em;font-weight:300;margin-bottom:20px;opacity:0.9;}
+  .badge{display:inline-block;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.5);border-radius:20px;padding:6px 18px;font-size:0.9em;margin:5px;}
+  .hotel-info{margin-top:25px;background:rgba(255,255,255,0.1);border-radius:12px;padding:15px 30px;display:inline-block;font-size:0.95em;}
+  .container{max-width:960px;margin:0 auto;padding:30px 20px;}
+  .context-box{background:white;border-left:5px solid #2e7d6b;border-radius:8px;padding:25px 30px;margin-bottom:30px;box-shadow:0 2px 8px rgba(0,0,0,0.07);}
+  .context-box h3{color:#2e7d6b;margin-bottom:12px;font-size:1.1em;text-transform:uppercase;letter-spacing:1px;}
+  .context-box p{line-height:1.7;}
+  .missions-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:30px;}
+  .missions-nav button{padding:9px 15px;border:2px solid #1a3a5c;background:white;color:#1a3a5c;border-radius:25px;cursor:pointer;font-weight:600;font-size:0.82em;transition:all 0.2s;}
+  .missions-nav button.active,.missions-nav button:hover{background:#1a3a5c;color:white;}
+  .mission-card{background:white;border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,0.08);margin-bottom:30px;overflow:hidden;display:none;}
+  .mission-card.active{display:block;}
+  .m1 .mission-header{background:linear-gradient(90deg,#2e7d6b,#3aa08a);}
+  .m2 .mission-header{background:linear-gradient(90deg,#1a3a5c,#2a5a8c);}
+  .m3 .mission-header{background:linear-gradient(90deg,#7d4e2e,#a06a3a);}
+  .m4 .mission-header{background:linear-gradient(90deg,#5c1a4a,#8c2a7a);}
+  .m5 .mission-header{background:linear-gradient(90deg,#2e5c1a,#4a8c2a);}
+  .mission-header{padding:20px 30px;color:white;display:flex;align-items:center;gap:15px;}
+  .mission-num{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;font-size:1.4em;font-weight:700;flex-shrink:0;}
+  .mission-header h2{font-size:1.2em;}
+  .mission-header p{font-size:0.85em;opacity:0.85;margin-top:3px;}
+  .mission-body{padding:25px 30px;}
+  .tab-bar{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+  .tab-btn{padding:7px 16px;border:2px solid #ccc;background:white;color:#555;border-radius:20px;cursor:pointer;font-size:0.82em;font-weight:600;transition:all 0.2s;}
+  .tab-btn.active{border-color:#1a3a5c;background:#1a3a5c;color:white;}
+  .tab-content{display:none;}
+  .tab-content.active{display:block;}
+  .section-title{font-size:0.8em;text-transform:uppercase;letter-spacing:1.5px;color:#888;margin-bottom:8px;margin-top:20px;font-weight:700;}
+  .section-title:first-child{margin-top:0;}
+  .info-box{background:#f0f7ff;border:1px solid #c5dff8;border-radius:8px;padding:14px 18px;font-size:0.92em;line-height:1.7;margin-bottom:10px;}
+  .info-box strong{color:#1a3a5c;}
+  .doc-data{background:#fffbf0;border:1px solid #f0d88a;border-radius:8px;padding:14px 18px;font-size:0.9em;line-height:1.8;}
+  .doc-data strong{color:#7d5a00;}
+  .steps{list-style:none;}
+  .steps li{display:flex;gap:14px;padding:10px 0;border-bottom:1px dashed #e8e8e8;font-size:0.93em;line-height:1.6;}
+  .steps li:last-child{border-bottom:none;}
+  .step-num{width:26px;height:26px;background:#1a3a5c;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8em;font-weight:700;flex-shrink:0;margin-top:2px;}
+  .res-list{display:flex;flex-direction:column;gap:10px;margin-top:8px;}
+  .res-item{border:1px solid #dde3ec;border-radius:10px;overflow:hidden;}
+  .res-toggle{width:100%;background:#f8f9fb;border:none;padding:12px 16px;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.92em;font-weight:600;color:#1a3a5c;transition:background 0.2s;}
+  .res-toggle:hover{background:#eaf0fb;}
+  .res-toggle .arrow{transition:transform 0.2s;font-size:0.8em;}
+  .res-toggle.open .arrow{transform:rotate(90deg);}
+  .res-body{display:none;padding:16px 18px;font-size:0.88em;line-height:1.75;border-top:1px solid #dde3ec;background:white;}
+  .res-body.open{display:block;}
+  .res-body p{margin-bottom:10px;}
+  .res-body p:last-child{margin-bottom:0;}
+  .res-body ul{padding-left:18px;margin-top:6px;}
+  .res-body ul li{margin-bottom:5px;}
+  .res-example{background:#f0f7ff;border-left:4px solid #2e7d6b;border-radius:0 6px 6px 0;padding:12px 14px;margin-top:12px;font-size:0.9em;}
+  .res-example strong{display:block;color:#2e7d6b;margin-bottom:6px;font-size:0.85em;text-transform:uppercase;letter-spacing:1px;}
+  .doc-wrapper{border:2px solid #1a3a5c;border-radius:10px;overflow:hidden;margin-top:10px;background:white;}
+  .doc-header-strip{background:#1a3a5c;color:white;text-align:center;padding:8px;font-size:0.85em;font-weight:700;letter-spacing:1px;}
+  .doc-print{padding:20px 25px;font-size:0.88em;}
+  .doc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;gap:20px;}
+  .doc-sender{font-size:0.9em;line-height:1.7;}
+  .doc-sender strong{font-size:1em;color:#1a3a5c;display:block;margin-bottom:4px;}
+  .doc-ref-box{border:2px solid #1a3a5c;border-radius:8px;padding:10px 16px;text-align:left;min-width:220px;}
+  .doc-ref-box .ref-title{font-weight:700;color:#1a3a5c;text-transform:uppercase;letter-spacing:1px;font-size:0.95em;margin-bottom:10px;text-align:center;}
+  .doc-ref-box .ref-line{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:0.88em;padding:3px 0;}
+  .doc-ref-box .ref-line span{color:#888;white-space:nowrap;}
+  .doc-client-box{background:#f8f9fb;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:0.9em;line-height:2;}
+  .doc-client-box .dc-label{font-size:0.75em;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:4px;font-weight:700;}
+  .doc-client-box .row{display:flex;align-items:center;gap:8px;}
+  .doc-client-box .row strong{white-space:nowrap;color:#1a3a5c;}
+  table.doc-table{width:100%;border-collapse:collapse;margin-bottom:14px;font-size:0.87em;}
+  table.doc-table th{background:#1a3a5c;color:white;padding:8px 10px;text-align:left;}
+  table.doc-table th.r{text-align:right;}
+  table.doc-table td{padding:6px 10px;border-bottom:1px solid #eee;vertical-align:middle;}
+  table.doc-table td.r{text-align:right;}
+  .totals-box{display:flex;justify-content:flex-end;margin-bottom:14px;}
+  .totals-inner{width:280px;font-size:0.88em;}
+  .totals-inner .t-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid #eee;gap:10px;}
+  .totals-inner .t-row.total{font-weight:700;color:#1a3a5c;border-top:2px solid #1a3a5c;border-bottom:2px solid #1a3a5c;font-size:1em;}
+  .doc-footer{display:flex;gap:20px;margin-top:14px;}
+  .doc-footer-col{flex:1;}
+  .doc-footer-col .df-label{font-size:0.75em;text-transform:uppercase;letter-spacing:1px;color:#888;font-weight:700;margin-bottom:6px;}
+  .sign-box{border:1px dashed #aaa;border-radius:6px;height:60px;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:0.82em;font-style:italic;}
+  .f{background:#fffde7;border:1px solid #f9c74f;border-radius:4px;padding:3px 7px;font-size:0.92em;font-family:inherit;color:#2c3e50;outline:none;transition:border-color 0.2s;}
+  .f:focus{border-color:#f4a261;background:#fff9e6;}
+  .f-sm{width:80px;}.f-md{width:130px;}.f-lg{width:200px;}.f-xl{width:100%;}
+  .f-num{width:72px;text-align:right;}
+  textarea.f{width:100%;resize:vertical;display:block;margin-top:4px;min-height:65px;}
+  .form-paper{padding:20px 25px;font-size:0.88em;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+  .form-field{display:flex;flex-direction:column;gap:4px;}
+  .form-field label{font-size:0.78em;text-transform:uppercase;letter-spacing:1px;color:#888;font-weight:700;}
+  .form-section-title{font-size:0.82em;text-transform:uppercase;letter-spacing:1px;color:#1a3a5c;font-weight:700;margin:16px 0 10px;padding-bottom:4px;border-bottom:2px solid #1a3a5c;}
+  .checkbox-group{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px;}
+  .checkbox-item{display:flex;align-items:center;gap:6px;font-size:0.9em;cursor:pointer;}
+  .checkbox-item input[type=checkbox]{width:16px;height:16px;cursor:pointer;}
+  .note-paper{padding:20px 25px;font-size:0.88em;}
+  .note-header-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:16px;border:1px solid #ddd;border-radius:8px;overflow:hidden;}
+  .note-header-grid .nh-cell{padding:10px 14px;border-bottom:1px solid #eee;display:flex;gap:8px;align-items:center;}
+  .note-header-grid .nh-cell:nth-child(odd){background:#f8f9fb;}
+  .note-header-grid .nh-label{font-weight:700;color:#1a3a5c;white-space:nowrap;font-size:0.88em;}
+  .note-body-area{border:1px solid #ddd;border-radius:8px;padding:16px;}
+  .note-pts-label{font-size:0.8em;text-transform:uppercase;letter-spacing:1px;color:#888;margin:14px 0 8px;font-weight:700;}
+  .note-pt-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;}
+  .npt-num{width:24px;height:24px;background:#2e7d6b;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.78em;font-weight:700;flex-shrink:0;margin-top:4px;}
+  /* AUTO-EVAL */
+  .autoeval{margin-top:24px;}
+  .autoeval-title{background:#2e7d6b;color:white;padding:12px 18px;border-radius:8px 8px 0 0;font-weight:700;font-size:0.95em;display:flex;align-items:center;gap:8px;}
+  .autoeval table{width:100%;border-collapse:collapse;border:1px solid #cde8d8;border-top:none;font-size:0.88em;}
+  .autoeval table th{background:#e8f7ef;color:#2c3e50;padding:9px 12px;text-align:left;font-weight:600;border-bottom:1px solid #cde8d8;}
+  .autoeval table th.center{text-align:center;width:100px;}
+  .autoeval table td{padding:9px 12px;border-bottom:1px solid #e8f0ec;vertical-align:middle;line-height:1.5;}
+  .autoeval table tr:last-child td{border-bottom:none;}
+  .autoeval table tr:nth-child(even) td{background:#f7fcf9;}
+  .ae-radio{display:flex;justify-content:center;}
+  .ae-btn{padding:4px 10px;border-radius:12px;border:1px solid #ccc;background:white;cursor:pointer;font-size:0.8em;font-weight:600;transition:all 0.15s;}
+  .ae-btn.oui:hover,.ae-btn.oui.sel{background:#2e7d6b;color:white;border-color:#2e7d6b;}
+  .ae-btn.partiel:hover,.ae-btn.partiel.sel{background:#e9a800;color:white;border-color:#e9a800;}
+  .ae-btn.non:hover,.ae-btn.non.sel{background:#c0392b;color:white;border-color:#c0392b;}
+  .print-btn{display:block;margin:20px auto 40px;padding:12px 35px;background:#1a3a5c;color:white;border:none;border-radius:25px;font-size:1em;cursor:pointer;font-weight:600;letter-spacing:0.5px;transition:background 0.2s;}
+  .print-btn:hover{background:#2e7d6b;}
+  @media print{
+    .missions-nav,.tab-bar,.print-btn{display:none;}
+    .mission-card{display:block!important;page-break-after:always;box-shadow:none;}
+    .tab-content{display:block!important;}
+    .cover,.mission-header{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>🏨 Hôtel Le Prieuré</h1>
+  <h2>Aydoilles — Vosges (88)</h2>
+  <div>
+    <span class="badge">📚 Bac Pro Accueil — 1ère année</span>
+    <span class="badge">📄 Documents Administratifs</span>
+    <span class="badge">🎯 5 Missions</span>
+  </div>
+  <div class="hotel-info"><strong>LÉGER Isabelle</strong> — Enseignante Éco-Gestion</div>
+</div>
+
+<div class="container">
+  <div class="context-box">
+    <h3>📌 Mise en situation</h3>
+    <p>Vous effectuez votre stage de première année à l'<strong>Hôtel Le Prieuré</strong>, situé à Aydoilles dans les Vosges. Cet hôtel de charme propose des chambres, une salle de réunion et un service de restauration. Votre tutrice, <strong>Mme Renard</strong>, vous confie cinq missions administratives. Lisez attentivement les consignes, consultez les ressources en cliquant dessus, remplissez les documents puis exportez en PDF pour votre Digipad.</p>
+  </div>
+  <div class="missions-nav">
+    <button class="active" onclick="showMission(1)">Mission 1 — Formulaire</button>
+    <button onclick="showMission(2)">Mission 2 — Devis</button>
+    <button onclick="showMission(3)">Mission 3 — Bon de commande</button>
+    <button onclick="showMission(4)">Mission 4 — Facture</button>
+    <button onclick="showMission(5)">Mission 5 — Note de service</button>
+  </div>
+
+  <!-- ====== M1 ====== -->
+  <div class="mission-card m1 active" id="m1">
+    <div class="mission-header"><div class="mission-num">1</div><div><h2>Formulaire de réservation de salle</h2><p>Remplir le formulaire officiel de l'hôtel</p></div></div>
+    <div class="mission-body">
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="showTab('m1','consignes',this)">📋 Consignes</button>
+        <button class="tab-btn" onclick="showTab('m1','ressources',this)">📚 Ressources</button>
+        <button class="tab-btn" onclick="showTab('m1','document',this)">📄 Document à remplir</button>
+      </div>
+      <div class="tab-content active" id="m1-consignes">
+        <div class="section-title">🎯 Situation</div>
+        <div class="info-box">M. Bertrand, directeur d'une PME à Épinal, souhaite réserver la <strong>salle de réunion "Les Vosges"</strong> pour une formation interne. Il se présente à l'accueil et vous demande de compléter le formulaire de réservation avec lui.</div>
+        <div class="section-title">📁 Informations communiquées par M. Bertrand</div>
+        <div class="doc-data">
+          <strong>Nom :</strong> BERTRAND &nbsp;|&nbsp; <strong>Prénom :</strong> Julien<br>
+          <strong>Société :</strong> MENUISERIE BERTRAND SARL — 8 Rue des Artisans, 88000 Épinal<br>
+          <strong>Téléphone :</strong> 03 29 34 12 78 &nbsp;|&nbsp; <strong>E-mail :</strong> j.bertrand@menuiserie-bertrand.fr<br>
+          <strong>Date souhaitée :</strong> Mardi 18 février 2025 &nbsp;|&nbsp; <strong>De :</strong> 09h00 &nbsp;<strong>À :</strong> 17h00<br>
+          <strong>Participants :</strong> 14 personnes &nbsp;|&nbsp; <strong>Disposition :</strong> En U<br>
+          <strong>Matériel :</strong> Vidéoprojecteur + Paperboard<br>
+          <strong>Observations :</strong> Pause-café souhaitée à 10h30 et 15h00
+        </div>
+        <div class="section-title">📋 Ce que vous devez faire</div>
+        <ul class="steps">
+          <li><div class="step-num">1</div><span>Lisez les ressources disponibles (onglet 📚 Ressources) pour comprendre ce qu'est un formulaire professionnel.</span></li>
+          <li><div class="step-num">2</div><span>Cliquez sur l'onglet <strong>📄 Document à remplir</strong>.</span></li>
+          <li><div class="step-num">3</div><span>Complétez tous les champs <span style="background:#fffde7;border:1px solid #f9c74f;padding:1px 6px;border-radius:3px;font-size:0.9em;">surlignés en jaune</span> avec les informations de M. Bertrand.</span></li>
+          <li><div class="step-num">4</div><span>Cochez les cases correspondant à la disposition souhaitée et au matériel demandé.</span></li>
+          <li><div class="step-num">5</div><span>Vérifiez à l'aide de la <strong>grille d'autoévaluation</strong> en bas du document.</span></li>
+        </ul>
+      </div>
+      <div class="tab-content" id="m1-ressources">
+        <div class="section-title">📚 Cliquez sur une ressource pour l'ouvrir</div>
+        <div class="res-list">
+          <div class="res-item"><button class="res-toggle" onclick="toggleRes(this)">📝 Qu'est-ce qu'un formulaire professionnel ? <span class="arrow">▶</span></button><div class="res-body"><p>Un <strong>formulaire professionnel</strong> est un document structuré qui permet de recueillir des informations de manière organisée et complète. Il est utilisé dans de nombreux secteurs : hôtellerie, santé, administration, etc.</p><p>Il se compose généralement de :</p><ul><li><strong>Un en-tête</strong> avec le nom et les coordonnées de l'entreprise</li><li><strong>Un titre</strong> clair indiquant l'objet du formulaire</li><li><strong>Des champs à remplir</strong> : zones de texte, cases à cocher</li><li><strong>Une zone de signature</strong> pour valider le document</li></ul><div class="res-example"><strong>✅ Exemple de présentation d'un champ</strong>Nom : _________________________ &nbsp;&nbsp; Prénom : _________________________<br>→ Chaque information est sur une ligne dédiée avec un intitulé visible.</div></div></div>
+          <div class="res-item"><button class="res-toggle" onclick="toggleRes(this)">🏨 La salle de réunion "Les Vosges" — infos utiles <span class="arrow">▶</span></button><div class="res-body"><p>La salle <strong>"Les Vosges"</strong> de l'Hôtel Le Prieuré est disponible pour des événements professionnels ou privés.</p><ul><li><strong>Capacité maximale :</strong> 20 personnes</li><li><strong>Équipements disponibles :</strong> vidéoprojecteur, paperboard, microphone, sonorisation</li><li><strong>Dispositions possibles :</strong> Théâtre, En U, Îlots, Banquet</li><li><strong>Horaires :</strong> 08h00 à 22h00</li></ul><div class="res-example"><strong>📌 Disposition "En U" — c'est quoi ?</strong>Les tables sont disposées en forme de U, avec le présentateur à l'ouverture. Cette disposition favorise les échanges. Elle convient aux réunions de 8 à 18 personnes.</div></div></div>
+          <div class="res-item"><button class="res-toggle" onclick="toggleRes(this)">🔤 Vocabulaire professionnel de l'hôtellerie <span class="arrow">▶</span></button><div class="res-body"><ul><li><strong>Check-in :</strong> arrivée du client et enregistrement à l'hôtel</li><li><strong>Check-out :</strong> départ du client et règlement de la note</li><li><strong>Prestation :</strong> service proposé par l'hôtel</li><li><strong>Acompte :</strong> somme versée à l'avance pour confirmer une réservation</li><li><strong>HT :</strong> Hors Taxes — prix avant TVA</li><li><strong>TTC :</strong> Toutes Taxes Comprises — prix final payé par le client</li></ul><div class="res-example"><strong>💡 À retenir</strong>TTC = HT + TVA &nbsp;|&nbsp; Ex : 100 € HT × 10 % = 10 € TVA → 110 € TTC</div></div></div>
+          <div class="res-item"><button class="res-toggle" onclick="toggleRes(this)">✅ Les règles d'un document professionnel réussi <span class="arrow">▶</span></button><div class="res-body"><ul><li><strong>Complétude :</strong> tous les champs doivent être remplis</li><li><strong>Lisibilité :</strong> écriture claire, orthographe soignée</li><li><strong>Exactitude :</strong> informations fidèles à ce que le client a communiqué</li><li><strong>Ton professionnel :</strong> pas d'abréviations familières, pas de ratures</li></ul><div class="res-example"><strong>❌ À éviter</strong>"Julien B." → écrire : "BERTRAND Julien"<br>"bcp de gens" → écrire : "14 participants"<br>Laisser des champs vides → toujours compléter ou indiquer "néant".</div></div></div>
+        </div>
+      </div>
+      <div class="tab-content" id="m1-document">
+        <div class="section-title">📄 Formulaire de réservation — Salle "Les Vosges"</div>
+        <div class="doc-wrapper">
+          <div class="doc-header-strip">📋 DEMANDE DE RÉSERVATION — SALLE LES VOSGES</div>
+          <div class="form-paper">
+            <div style="text-align:center;margin-bottom:16px;"><div style="font-weight:700;font-size:1.05em;color:#1a3a5c;">HÔTEL LE PRIEURÉ</div><div style="font-size:0.82em;color:#666;">Route des Forêts — 88700 Aydoilles | Tél : 03 29 XX XX XX | contact@hotel-leprieure.fr</div></div>
+            <div class="form-section-title">Coordonnées du demandeur</div>
+            <div class="form-row"><div class="form-field"><label>Nom</label><input class="f f-xl" type="text" placeholder="Nom du client…"></div><div class="form-field"><label>Prénom</label><input class="f f-xl" type="text" placeholder="Prénom du client…"></div></div>
+            <div class="form-row"><div class="form-field"><label>Société / Association</label><input class="f f-xl" type="text" placeholder="Nom de la société…"></div><div class="form-field"><label>Téléphone</label><input class="f f-xl" type="text" placeholder="Numéro de téléphone…"></div></div>
+            <div class="form-row"><div class="form-field"><label>Adresse complète</label><input class="f f-xl" type="text" placeholder="N°, rue, code postal, ville…"></div><div class="form-field"><label>E-mail</label><input class="f f-xl" type="email" placeholder="adresse@email.fr"></div></div>
+            <div class="form-section-title">Détails de la réservation</div>
+            <div class="form-row"><div class="form-field"><label>Date souhaitée</label><input class="f f-xl" type="date"></div><div class="form-field"><label>Nombre de participants (max. 20)</label><input class="f f-xl" type="number" min="1" max="20" placeholder="ex : 14"></div></div>
+            <div class="form-row"><div class="form-field"><label>Heure de début</label><input class="f f-xl" type="time"></div><div class="form-field"><label>Heure de fin</label><input class="f f-xl" type="time"></div></div>
+            <div class="form-field" style="margin-bottom:14px;"><label>Disposition souhaitée</label><div class="checkbox-group"><label class="checkbox-item"><input type="checkbox"> Théâtre</label><label class="checkbox-item"><input type="checkbox"> En U</label><label class="checkbox-item"><input type="checkbox"> Îlots</label><label class="checkbox-item"><input type="checkbox"> Banquet</label></div></div>
+            <div class="form-field" style="margin-bottom:14px;"><label>Matériel nécessaire</label><div class="checkbox-group"><label class="checkbox-item"><input type="checkbox"> Vidéoprojecteur</label><label class="checkbox-item"><input type="checkbox"> Paperboard</label><label class="checkbox-item"><input type="checkbox"> Microphone</label><label class="checkbox-item"><input type="checkbox"> Sonorisation</label></div></div>
+            <div class="form-section-title">Observations / Demandes particulières</div>
+            <textarea class="f" rows="3" placeholder="Précisez toute demande spécifique…"></textarea>
+            <div class="doc-footer" style="margin-top:16px;">
+              <div class="doc-footer-col"><div class="df-label">Date</div><input class="f f-xl" type="date" style="margin-top:6px;"></div>
+              <div class="doc-footer-col"><div class="df-label">Signature du demandeur</div><div class="sign-box">Signature manuscrite</div></div>
+              <div class="doc-footer-col"><div class="df-label">Visa de l'hôtel</div><div class="sign-box">Cachet / Signature</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="autoeval">
+          <div class="autoeval-title">🔍 Grille d'autoévaluation — Vérifiez votre travail avant de rendre</div>
+          <table>
+            <tr><th>Critère</th><th class="center">✅ Oui</th><th class="center">🔶 Partiellement</th><th class="center">❌ Non</th></tr>
+            <tr><td>J'ai renseigné le nom et le prénom du client</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai indiqué la société, l'adresse, le téléphone et l'e-mail</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai saisi la date et les horaires de réservation</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai indiqué le nombre de participants</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai coché la bonne disposition (En U)</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai coché le matériel demandé (vidéoprojecteur + paperboard)</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai noté les observations (pause-café)</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai renseigné la date de la demande</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== M2 ====== -->
+  <div class="mission-card m2" id="m2">
+    <div class="mission-header"><div class="mission-num">2</div><div><h2>Établissement d'un devis</h2><p>Séjour de groupe • Association sportive d'Épinal</p></div></div>
+    <div class="mission-body">
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="showTab('m2','consignes',this)">📋 Consignes</button>
+        <button class="tab-btn" onclick="showTab('m2','ressources',this)">📚 Ressources</button>
+        <button class="tab-btn" onclick="showTab('m2','document',this)">📄 Document à remplir</button>
+      </div>
+      <div class="tab-content active" id="m2-consignes">
+        <div class="section-title">🎯 Situation</div>
+        <div class="info-box">L'<strong>Association Sportive de Natation d'Épinal (ASNE)</strong> souhaite organiser un week-end de cohésion. M. Fabian Collin vous contacte pour obtenir un devis. Mme Renard vous demande de le préparer.</div>
+        <div class="section-title">📁 Données à utiliser</div>
+        <div class="doc-data">
+          <strong>Client :</strong> Association Sportive de Natation d'Épinal (ASNE)<br>
+          <strong>Contact :</strong> M. Fabian Collin — 12 Rue du Lac, 88000 Épinal<br>
+          <strong>Séjour :</strong> Du vendredi 14 mars au dimanche 16 mars 2025 (2 nuits)<br>
+          <strong>Chambres :</strong> 4 chambres doubles à 75 € HT/nuit + 4 chambres simples à 55 € HT/nuit<br>
+          <strong>Petits-déjeuners :</strong> 12 personnes × 2 matins × 10 € HT<br>
+          <strong>Dîner samedi soir :</strong> 12 personnes × 28 € HT<br>
+          <strong>TVA :</strong> 10 % | <strong>N° devis :</strong> DEV-2025-007 | <strong>Validité :</strong> 30 jours
+        </div>
+        <div class="section-title">📋 Ce que vous devez faire</div>
+        <ul class="steps">
+          <li><div class="step-num">1</div><span>Consultez les ressources pour comprendre la structure d'un devis et les calculs HT/TVA/TTC.</span></li>
+          <li><div class="step-num">2</div><span>Remplissez les coordonnées du client et la date d'émission.</span></li>
+          <li><div class="step-num">3</div><span>Pour chaque prestation, calculez la quantité et le total HT, puis saisissez-les.</span></li>
+          <li><div class="step-num">4</div><span>Calculez et saisissez le Total HT, la TVA à 10 % et le Total TTC.</span></li>
+          <li><div class="step-num">5</div><span>Vérifiez votre travail avec la grille d'autoévaluation.</span></li>
+        </ul>
+      </div>
+      <div class="tab-content" id="m2-ressources">
+        <div class="section-title">📚 Cliquez sur une ressource pour l'ouvrir</div>
+        <div class="res-list">
+          <div class="res-item"><button class="res-toggle" onclick="toggleRes(this)">📘 Qu'est-ce qu'un devis ? <span class="arrow">▶</span></button><div class="res-body"><p>Un <strong>devis</strong> est un document commercial présentant une estimation chiffrée des prestations proposées à un client, <strong>avant</strong> qu'il donne son accord. Il n'est pas encore une obligation de paiement.</p><p><strong>Mentions obligatoires :</strong></p><ul><li>Nom et coordonnées de l'entreprise et du client</li><li>Numéro et date du devis</li><li>Description des prestations, quantité, prix unitaire HT, total HT</li><li>Taux et montant de la TVA, Total TTC</li><li>Durée de validité</li><li>Signature + "Bon pour accord" du client</li></ul><div class="res-example"><strong>💡 Différence devis / facture</strong>Le devis est établi <em>avant</em> la prestation — il propose un prix. La facture est établie <em>après</em> — elle demande le paiement. Un devis signé engage les deux parties.</div></div></div>
+          <div class="res-item"><button class="res-toggle" onclick="toggleRes(this)">🧮 Calculs HT / TVA / TTC — Méthode pas à pas <span class="arrow">▶</span></button><div class="res-body"><ul><li><strong>Total HT d'une ligne</strong> = Quantité × Prix unitaire HT</li><li><strong>Total HT général</strong> = Somme de tous les totaux HT</li><li><strong>Montant TVA</strong> = Total HT × 0,10 (pour TVA 10 %)</li><li><strong>Total TTC</strong> = Total HT + TVA &nbsp;ou&nbsp; Total HT × 1,10</li></ul><div class="res-example"><strong>📌 Exemple (TVA 10 %)</strong>4 chambres doubles × 2 nuits × 75 € = <strong>600 € HT</strong><br>TVA : 600 × 0,10 = <strong>60 €</strong><br>TTC : 600 + 60 = <strong>660 € TTC</strong></div></div></div>
+          <div class="res-item"><button class="res-toggle" onclick="toggleRes(this)">📄 Exemple annoté d'un devis hôtelier <span class="arrow">▶</span></button><div class="res-body"><div class="res-example" style="font-family:monospace;font-size:0.85em;line-height:2;"><strong>HÔTEL LE PRIEURÉ — Devis N° DEV-2025-XXX — Date : jj/mm/aaaa</strong><br>Client : Nom / Société / Adresse<br>──────────────────────────────────<br>Désignation &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Qté | P.U. HT | Total HT<br>Chambre double &nbsp;|  8  |  75,00  |  600,00<br>Petits-déjeuners | 24  |  10,00  |  240,00<br>──────────────────────────────────<br>Total HT : 840 € | TVA 10% : 84 € | <strong>TTC : 924 €</strong><br>Validité : 30 jours | Bon pour accord : ________</div></div></div>
+          <div class="res-item"><button class="res-toggle" onclick="toggleRes(this)">⚖️ Mentions légales à connaître <span class="arrow">▶</span></button><div class="res-body"><ul><li><strong>SIRET :</strong> numéro d'identification de l'entreprise (14 chiffres)</li><li><strong>Code APE :</strong> code indiquant l'activité principale (ex : 5510Z pour hôtellerie)</li><li><strong>Durée de validité :</strong> obligatoire sur tout devis</li><li><strong>Conditions de règlement :</strong> acompte demandé, délai de paiement</li></ul><div class="res-example"><strong>📌 À savoir</strong>Un devis signé avec la mention "Bon pour accord" a la même valeur qu'un contrat.</div></div></div>
+        </div>
+      </div>
+      <div class="tab-content" id="m2-document">
+        <div class="section-title">📄 Devis N° DEV-2025-007</div>
+        <div class="doc-wrapper">
+          <div class="doc-header-strip">💰 DEVIS</div>
+          <div class="doc-print">
+            <div class="doc-top">
+              <div class="doc-sender"><strong>HÔTEL LE PRIEURÉ</strong>Route des Forêts — 88700 Aydoilles<br>Tél : 03 29 XX XX XX<br>contact@hotel-leprieure.fr<br>SIRET : 542 100 488 00015</div>
+              <div class="doc-ref-box"><div class="ref-title">DEVIS</div><div class="ref-line"><span>N° :</span> <strong>DEV-2025-007</strong></div><div class="ref-line"><span>Date :</span> <input class="f f-md" type="date"></div><div class="ref-line"><span>Validité jusqu'au :</span> <input class="f f-md" type="date"></div></div>
+            </div>
+            <div class="doc-client-box">
+              <div class="dc-label">Client / Destinataire</div>
+              <div class="row"><strong>Société :</strong> <input class="f f-lg" type="text" placeholder="Nom de l'association…"></div>
+              <div class="row"><strong>Contact :</strong> <input class="f f-lg" type="text" placeholder="Nom du contact…"></div>
+              <div class="row"><strong>Adresse :</strong> <input class="f" style="width:280px" type="text" placeholder="Adresse complète…"></div>
+            </div>
+            <table class="doc-table">
+              <tr><th>Désignation</th><th class="r">Qté</th><th class="r">P.U. HT (€)</th><th class="r">Total HT (€)</th></tr>
+              <tr><td>Chambres doubles (2 nuits)</td><td class="r"><input class="f f-num" type="number" placeholder="0"></td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td></tr>
+              <tr><td>Chambres simples (2 nuits)</td><td class="r"><input class="f f-num" type="number" placeholder="0"></td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td></tr>
+              <tr><td>Petits-déjeuners</td><td class="r"><input class="f f-num" type="number" placeholder="0"></td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td></tr>
+              <tr><td>Dîner du samedi soir</td><td class="r"><input class="f f-num" type="number" placeholder="0"></td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td></tr>
+            </table>
+            <div class="totals-box"><div class="totals-inner"><div class="t-row"><span>Total HT</span> <input class="f f-num" type="number" placeholder="0,00"> €</div><div class="t-row"><span>TVA (10 %)</span> <input class="f f-num" type="number" placeholder="0,00"> €</div><div class="t-row total"><span>TOTAL TTC</span> <input class="f f-num" type="number" placeholder="0,00"> €</div></div></div>
+            <div class="doc-footer">
+              <div class="doc-footer-col"><div class="df-label">Conditions de règlement</div><div style="font-size:0.88em;color:#555;line-height:1.6;">Acompte de 30 % à la commande<br>Solde à réception de facture</div></div>
+              <div class="doc-footer-col"><div class="df-label">Signature hôtel</div><div class="sign-box">Mme Renard</div></div>
+              <div class="doc-footer-col"><div class="df-label">Bon pour accord (client)</div><div class="sign-box">Date + Signature client</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="autoeval">
+          <div class="autoeval-title">🔍 Grille d'autoévaluation — Vérifiez votre travail avant de rendre</div>
+          <table>
+            <tr><th>Critère</th><th class="center">✅ Oui</th><th class="center">🔶 Partiellement</th><th class="center">❌ Non</th></tr>
+            <tr><td>J'ai renseigné les coordonnées complètes du client</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai indiqué la date d'émission et la date de validité</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai rempli les 4 lignes de prestations (qté, PU, total)</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>Mon Total HT est correct (j'ai vérifié mes calculs)</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai calculé la TVA à 10 % correctement</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>Mon Total TTC est correct (HT + TVA)</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== M3 ====== -->
+  <div class="mission-card m3" id="m3">
+    <div class="mission-header"><div class="mission-num">3</div><div><h2>Rédaction d'un bon de commande</h2><p>Fournitures d'accueil • Fournisseur local</p></div></div>
+    <div class="mission-body">
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="showTab('m3','consignes',this)">📋 Consignes</button>
+        <button class="tab-btn" onclick="showTab('m3','ressources',this)">📚 Ressources</button>
+        <button class="tab-btn" onclick="showTab('m3','document',this)">📄 Document à remplir</button>
+      </div>
+      <div class="tab-content active" id="m3-consignes">
+        <div class="section-title">🎯 Situation</div>
+        <div class="info-box">En faisant l'inventaire des produits d'accueil, vous constatez que plusieurs articles sont épuisés. Mme Renard vous demande de passer une commande auprès de <strong>SOGEBUR Vosges</strong>.</div>
+        <div class="section-title">📁 Données à utiliser</div>
+        <div class="doc-data">
+          <strong>Fournisseur :</strong> SOGEBUR Vosges — 18 Zone Artisanale, 88000 Épinal<br>
+          <strong>N° BC :</strong> BC-2025-041 | <strong>Commande :</strong> 20/01/2025 | <strong>Livraison :</strong> 27/01/2025<br><br>
+          • Savonnettes individuelles (boîte/200) — réf. <strong>SAV-100</strong> — 18,50 € HT — qté : 1<br>
+          • Shampooings individuels (boîte/200) — réf. <strong>SHA-200</strong> — 22,00 € HT — qté : 1<br>
+          • Bonnets de douche (lot/100) — réf. <strong>BON-50</strong> — 9,90 € HT — qté : 1<br>
+          • Stylos bille noir (boîte/50) — réf. <strong>STY-BL</strong> — 7,20 € HT — qté : 1<br>
+          • Blocs-notes A6 (lot/100) — réf. <strong>BLK-A6</strong> — 14,60 € HT — qté : 1<br>
+          <strong>TVA :</strong> 20 %
+        </div>
+        <div class="section-title">📋 Ce que vous devez faire</div>
+        <ul class="steps">
+          <li><div class="step-num">1</div><span>Consultez les ressources pour comprendre le bon de commande et les calculs TVA 20 %.</span></li>
+          <li><div class="step-num">2</div><span>Complétez les coordonnées du fournisseur et les dates.</span></li>
+          <li><div class="step-num">3</div><span>Saisissez la référence et le prix unitaire HT de chaque article, puis calculez le total HT.</span></li>
+          <li><div class="step-num">4</div><span>Calculez le Total HT, la TVA (20 %) et le Total TTC.</span></li>
+          <li><div class="step-num">5</div><span>Vérifiez avec la grille d'autoévaluation.</span></li>
+        </ul>
+      </div>
+      <div class="tab-content" id="m3-ressources">
+        <div class="section-title">📚 Cliquez sur une ressource pour l'ouvrir</div>
+        <div class="res-list">
+          <div class="res-item"><button class="res-toggle" onclick="toggleRes(this)">📘 Qu'est-ce qu'un bon de commande ? <span class="arrow">▶</span></button><div class="res-body"><p>Un <strong>bon de commande (BC)</strong> est un document émis par un acheteur à destination d'un fournisseur pour lui demander officiellement de livrer des marchandises.</p><ul><li>Coordonnées de l'acheteur et du fournisseur</li><li>Numéro de BC, date de commande et date de livraison souhaitée</li><li>Liste des articles : référence, désignation, quantité, prix HT, total HT</li><li>Total HT, TVA, Total TTC</li><li>Mode de règlement et signature</li></ul><div class="res-example"><strong>📌 Circuit du document</strong>Hôtel envoie le BC → Fournisseur prépare et livre (avec bon de livraison) → Fournisseur envoie la facture → Hôtel règle.</div></div></div>
+          <div class="res-item"><button class="res-toggle" onclick="toggleRes(this)">🧮 Calculs avec TVA à 20 % <span class="arrow">▶</span></button><div class="res-body"><ul><li>Total HT ligne = Quantité × Prix unitaire HT</li><li>Total HT général = somme de toutes les lignes</li><li>TVA = Total HT × 0,20</li><li>Total TTC = Total HT × 1,20</li></ul><div class="res-example"><strong>📌 Exemple TVA 20 %</strong>Total HT = 72,20 €<br>TVA : 72,20 × 0,20 = <strong>14,44 €</strong><br>TTC : 72,20 + 14,44 = <strong>86,64 € TTC</strong></div></div></div>
+          <div class="res-item"><button class="res-toggle" onclick="toggleRes(this)">🏭 Catalogue SOGEBUR Vosges <span class="arrow">▶</span></button><div class="res-body"><p><strong>SOGEBUR Vosges</strong> — fournisseur de produits d'hygiène et fournitures hôtelières.</p><ul><li>Adresse : 18 Zone Artisanale, 88000 Épinal</li><li>Délai de livraison : 5 à 7 jours ouvrés</li><li>Mode de règlement : virement bancaire, 30 jours fin de mois</li></ul><div class="res-example"><strong>📦 Articles commandés</strong>SAV-100 — Savonnettes 20g (boîte/200) — 18,50 € HT<br>SHA-200 — Shampooings 30ml (boîte/200) — 22,00 € HT<br>BON-50 — Bonnets de douche (lot/100) — 9,90 € HT<br>STY-BL — Stylos bille noir (boîte/50) — 7,20 € HT<br>BLK-A6 — Blocs-notes A6 (lot/100) — 14,60 € HT</div></div></div>
+        </div>
+      </div>
+      <div class="tab-content" id="m3-document">
+        <div class="section-title">📄 Bon de commande N° BC-2025-041</div>
+        <div class="doc-wrapper">
+          <div class="doc-header-strip">🛒 BON DE COMMANDE</div>
+          <div class="doc-print">
+            <div class="doc-top">
+              <div class="doc-sender"><strong>HÔTEL LE PRIEURÉ</strong>Route des Forêts — 88700 Aydoilles<br>Tél : 03 29 XX XX XX<br>SIRET : 542 100 488 00015</div>
+              <div class="doc-ref-box"><div class="ref-title">BON DE COMMANDE</div><div class="ref-line"><span>N° :</span> <strong>BC-2025-041</strong></div><div class="ref-line"><span>Date commande :</span> <input class="f f-md" type="date"></div><div class="ref-line"><span>Livraison souhaitée :</span> <input class="f f-md" type="date"></div></div>
+            </div>
+            <div class="doc-client-box">
+              <div class="dc-label">Fournisseur</div>
+              <div class="row"><strong>Société :</strong> <input class="f f-lg" type="text" placeholder="Nom du fournisseur…"></div>
+              <div class="row"><strong>Adresse :</strong> <input class="f" style="width:280px" type="text" placeholder="Adresse du fournisseur…"></div>
+            </div>
+            <table class="doc-table">
+              <tr><th>Référence</th><th>Désignation</th><th class="r">Qté</th><th class="r">P.U. HT (€)</th><th class="r">Total HT (€)</th></tr>
+              <tr><td><input class="f f-sm" type="text" placeholder="Réf."></td><td>Savonnettes individuelles (boîte/200)</td><td class="r">1</td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td></tr>
+              <tr><td><input class="f f-sm" type="text" placeholder="Réf."></td><td>Shampooings individuels (boîte/200)</td><td class="r">1</td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td></tr>
+              <tr><td><input class="f f-sm" type="text" placeholder="Réf."></td><td>Bonnets de douche (lot/100)</td><td class="r">1</td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td></tr>
+              <tr><td><input class="f f-sm" type="text" placeholder="Réf."></td><td>Stylos bille noir (boîte/50)</td><td class="r">1</td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td></tr>
+              <tr><td><input class="f f-sm" type="text" placeholder="Réf."></td><td>Blocs-notes A6 (lot/100)</td><td class="r">1</td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td></tr>
+            </table>
+            <div class="totals-box"><div class="totals-inner"><div class="t-row"><span>Total HT</span> <input class="f f-num" type="number" placeholder="0,00"> €</div><div class="t-row"><span>TVA (20 %)</span> <input class="f f-num" type="number" placeholder="0,00"> €</div><div class="t-row total"><span>TOTAL TTC</span> <input class="f f-num" type="number" placeholder="0,00"> €</div></div></div>
+            <div class="doc-footer">
+              <div class="doc-footer-col"><div class="df-label">Mode de règlement</div><div style="font-size:0.88em;color:#555;line-height:1.6;">Virement bancaire<br>Délai : 30 jours fin de mois</div></div>
+              <div class="doc-footer-col"><div class="df-label">Signature & cachet</div><div class="sign-box">LÉGER Isabelle — Éco-Gestion</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="autoeval">
+          <div class="autoeval-title">🔍 Grille d'autoévaluation — Vérifiez votre travail avant de rendre</div>
+          <table>
+            <tr><th>Critère</th><th class="center">✅ Oui</th><th class="center">🔶 Partiellement</th><th class="center">❌ Non</th></tr>
+            <tr><td>J'ai complété le nom et l'adresse du fournisseur</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai renseigné la date de commande et la date de livraison</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai saisi les 5 références articles correctement</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai renseigné les 5 prix unitaires HT corrects</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>Mon Total HT général est exact</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai calculé la TVA à 20 % correctement</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>Mon Total TTC est correct</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== M4 ====== -->
+  <div class="mission-card m4" id="m4">
+    <div class="mission-header"><div class="mission-num">4</div><div><h2>Édition d'une facture client</h2><p>Séjour individuel • 3 nuits avec petits-déjeuners</p></div></div>
+    <div class="mission-body">
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="showTab('m4','consignes',this)">📋 Consignes</button>
+        <button class="tab-btn" onclick="showTab('m4','ressources',this)">📚 Ressources</button>
+        <button class="tab-btn" onclick="showTab('m4','document',this)">📄 Document à remplir</button>
+      </div>
+      <div class="tab-content active" id="m4-consignes">
+        <div class="section-title">🎯 Situation</div>
+        <div class="info-box">Mme Sophie Hubert vient de terminer son séjour. Elle se présente à la réception pour régler sa note. Mme Renard vous demande de préparer sa facture.</div>
+        <div class="section-title">📁 Données à utiliser</div>
+        <div class="doc-data">
+          <strong>Cliente :</strong> Mme Sophie Hubert — 34 Avenue de la Moselle, 57000 Metz<br>
+          <strong>N° facture :</strong> FAC-2025-089 | <strong>Date :</strong> 23 janvier 2025<br>
+          <strong>Séjour :</strong> Du lundi 20 au jeudi 23 janvier 2025 (3 nuits)<br>
+          <strong>Chambre double supérieure :</strong> 3 nuits × 85,00 € HT<br>
+          <strong>Petits-déjeuners :</strong> 3 matins × 10,00 € HT<br>
+          <strong>Consommations minibar :</strong> forfait 6,00 € HT<br>
+          <strong>TVA :</strong> 10 % | <strong>Règlement :</strong> Carte bancaire Visa
+        </div>
+        <div class="section-title">📋 Ce que vous devez faire</div>
+        <ul class="steps">
+          <li><div class="step-num">1</div><span>Consultez les ressources pour comprendre la structure d'une facture et les mentions obligatoires.</span></li>
+          <li><div class="step-num">2</div><span>Complétez les coordonnées de la cliente et la date d'émission.</span></li>
+          <li><div class="step-num">3</div><span>Remplissez les 3 lignes de prestations avec les quantités et prix.</span></li>
+          <li><div class="step-num">4</div><span>Calculez et saisissez le Total HT, la TVA et le Total TTC.</span></li>
+          <li><div class="step-num">5</div><span>Indiquez le mode de règlement et la mention "Acquittée le 23/01/2025".</span></li>
+          <li><div class="step-num">6</div><span>Vérifiez avec la grille d'autoévaluation.</span></li>
+        </ul>
+      </div>
+      <div class="tab-content" id="m4-ressources">
+        <div class="section-title">📚 Cliquez sur une ressource pour l'ouvrir</div>
+        <div class="res-list">
+          <div class="res-item"><button class="res-toggle" onclick="toggleRes(this)">📘 Qu'est-ce qu'une facture ? Mentions obligatoires <span class="arrow">▶</span></button><div class="res-body"><p>Une <strong>facture</strong> est un document comptable attestant qu'une prestation a été réalisée et demandant son paiement.</p><p><strong>Mentions obligatoires (art. L441-9 Code de commerce) :</strong></p><ul><li>Date d'émission et numéro de facture (séquentiel)</li><li>Nom, adresse et SIRET de l'émetteur</li><li>Nom et adresse du client</li><li>Description des prestations, quantité, prix HT</li><li>Taux de TVA et montant, Total TTC</li><li>Mode et délai de règlement</li></ul><div class="res-example"><strong>💡 La mention "Acquittée"</strong>Quand une facture est payée sur place, on ajoute : <em>"Acquittée le jj/mm/aaaa"</em> — c'est la preuve du règlement.</div></div></div>
+          <div class="res-item"><button class="res-toggle" onclick="toggleRes(this)">🧮 Calculs HT / TVA 10 % / TTC <span class="arrow">▶</span></button><div class="res-body"><ul><li>Total HT ligne = Quantité × Prix unitaire HT</li><li>TVA = Total HT × 0,10</li><li>Total TTC = Total HT × 1,10</li></ul><div class="res-example"><strong>📌 Application sur la facture de Mme Hubert</strong>Chambre : 3 × 85,00 = <strong>255,00 € HT</strong><br>Petits-déjeuners : 3 × 10,00 = <strong>30,00 € HT</strong><br>Minibar : <strong>6,00 € HT</strong><br>Total HT = <strong>291,00 €</strong> | TVA 10 % = <strong>29,10 €</strong> | <strong>TTC = 320,10 €</strong></div></div></div>
+          <div class="res-item"><button class="res-toggle" onclick="toggleRes(this)">📄 Exemple annoté d'une facture hôtelière <span class="arrow">▶</span></button><div class="res-body"><div class="res-example" style="font-family:monospace;font-size:0.85em;line-height:2;"><strong>HÔTEL LE PRIEURÉ — FACTURE N° FAC-2025-XXX — Date : jj/mm/aaaa</strong><br>Facturé à : Mme Nom Prénom — Adresse | Séjour du … au …<br>──────────────────────────────────────<br>Désignation &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Qté | P.U. HT | Total HT<br>Chambre double sup |  3  |  85,00  |  255,00<br>Petits-déjeuners &nbsp;&nbsp;|  3  |  10,00  |   30,00<br>Minibar &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|  1  |   6,00  |    6,00<br>HT : 291,00 € | TVA 10% : 29,10 € | <strong>TTC : 320,10 €</strong><br>Règlement : CB Visa — Acquittée le 23/01/2025</div></div></div>
+          <div class="res-item"><button class="res-toggle" onclick="toggleRes(this)">💳 Les modes de règlement en hôtellerie <span class="arrow">▶</span></button><div class="res-body"><ul><li><strong>Carte bancaire (CB) :</strong> Visa, Mastercard — paiement immédiat</li><li><strong>Espèces :</strong> paiement liquide, reçu obligatoire</li><li><strong>Chèques vacances (ANCV) :</strong> acceptés dans de nombreux hôtels</li><li><strong>Virement bancaire :</strong> pour les clients professionnels</li></ul><div class="res-example"><strong>📌 Bon à savoir</strong>Toujours préciser le mode de règlement sur la facture. Si paiement sur place → mention <em>"Acquittée le [date]"</em>. Si différé → indiquer la date d'échéance.</div></div></div>
+        </div>
+      </div>
+      <div class="tab-content" id="m4-document">
+        <div class="section-title">📄 Facture N° FAC-2025-089</div>
+        <div class="doc-wrapper">
+          <div class="doc-header-strip">🧾 FACTURE</div>
+          <div class="doc-print">
+            <div class="doc-top">
+              <div class="doc-sender"><strong>HÔTEL LE PRIEURÉ</strong>Route des Forêts — 88700 Aydoilles<br>Tél : 03 29 XX XX XX<br>SIRET : 542 100 488 00015 | APE : 5510Z</div>
+              <div class="doc-ref-box"><div class="ref-title">FACTURE</div><div class="ref-line"><span>N° :</span> <strong>FAC-2025-089</strong></div><div class="ref-line"><span>Date :</span> <input class="f f-md" type="date"></div></div>
+            </div>
+            <div class="doc-client-box">
+              <div class="dc-label">Facturé à</div>
+              <div class="row"><strong>Nom :</strong> <input class="f f-lg" type="text" placeholder="Nom de la cliente…"></div>
+              <div class="row"><strong>Adresse :</strong> <input class="f" style="width:280px" type="text" placeholder="Adresse complète…"></div>
+              <div class="row"><strong>Dates du séjour :</strong> <input class="f" style="width:230px" type="text" placeholder="du … au …"></div>
+            </div>
+            <table class="doc-table">
+              <tr><th>Désignation</th><th class="r">Qté</th><th class="r">P.U. HT (€)</th><th class="r">Total HT (€)</th></tr>
+              <tr><td>Chambre double supérieure</td><td class="r"><input class="f f-num" type="number" placeholder="0"> nuit(s)</td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td></tr>
+              <tr><td>Petits-déjeuners</td><td class="r"><input class="f f-num" type="number" placeholder="0"> pers.</td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td></tr>
+              <tr><td>Consommations minibar</td><td class="r">1</td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td><td class="r"><input class="f f-num" type="number" placeholder="0,00"></td></tr>
+            </table>
+            <div class="totals-box"><div class="totals-inner"><div class="t-row"><span>Total HT</span> <input class="f f-num" type="number" placeholder="0,00"> €</div><div class="t-row"><span>TVA (10 %)</span> <input class="f f-num" type="number" placeholder="0,00"> €</div><div class="t-row total"><span>TOTAL TTC</span> <input class="f f-num" type="number" placeholder="0,00"> €</div></div></div>
+            <div class="doc-footer">
+              <div class="doc-footer-col"><div class="df-label">Mode de règlement</div><input class="f f-xl" type="text" placeholder="ex : Carte bancaire Visa" style="margin-bottom:8px;"><div style="font-size:0.85em;display:flex;align-items:center;gap:6px;">Mention : <input class="f" style="width:190px" type="text" placeholder="Acquittée le …"></div></div>
+              <div class="doc-footer-col"><div class="df-label">Signature hôtel</div><div class="sign-box">Mme Renard</div></div>
+            </div>
+            <div style="margin-top:14px;font-size:0.75em;color:#999;border-top:1px solid #eee;padding-top:8px;">TVA non récupérable pour les particuliers — SIRET 542 100 488 00015 — APE 5510Z</div>
+          </div>
+        </div>
+        <div class="autoeval">
+          <div class="autoeval-title">🔍 Grille d'autoévaluation — Vérifiez votre travail avant de rendre</div>
+          <table>
+            <tr><th>Critère</th><th class="center">✅ Oui</th><th class="center">🔶 Partiellement</th><th class="center">❌ Non</th></tr>
+            <tr><td>J'ai renseigné le nom, l'adresse et les dates de séjour de la cliente</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai indiqué la date d'émission de la facture</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai rempli les 3 lignes de prestations correctement</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>Mon Total HT est exact (291,00 €)</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai calculé la TVA à 10 % correctement (29,10 €)</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>Mon Total TTC est correct (320,10 €)</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai indiqué le mode de règlement et la mention "Acquittée"</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== M5 ====== -->
+  <div class="mission-card m5" id="m5">
+    <div class="mission-header"><div class="mission-num">5</div><div><h2>Rédaction d'une note de service interne</h2><p>Nouvelle procédure d'accueil • Toute l'équipe</p></div></div>
+    <div class="mission-body">
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="showTab('m5','consignes',this)">📋 Consignes</button>
+        <button class="tab-btn" onclick="showTab('m5','ressources',this)">📚 Ressources</button>
+        <button class="tab-btn" onclick="showTab('m5','document',this)">📄 Document à remplir</button>
+      </div>
+      <div class="tab-content active" id="m5-consignes">
+        <div class="section-title">🎯 Situation</div>
+        <div class="info-box">Suite à plusieurs commentaires négatifs de clients, la direction modifie sa procédure de check-in. Mme Renard vous demande de rédiger une note de service pour informer tout le personnel.</div>
+        <div class="section-title">📁 Données à utiliser</div>
+        <div class="doc-data">
+          <strong>Émetteur :</strong> Mme Renard | <strong>Destinataires :</strong> Tout le personnel<br>
+          <strong>Date :</strong> 27 janvier 2025 | <strong>N° note :</strong> NS-2025-03<br>
+          <strong>Objet :</strong> Nouvelle procédure de check-in — Application dès le 3 février 2025<br><br>
+          1. L'heure d'accueil passe de 15h00 à <strong>14h00</strong><br>
+          2. Un <strong>verre de bienvenue</strong> doit être proposé à chaque client à son arrivée<br>
+          3. La <strong>carte de fidélité</strong> doit être présentée à tout nouveau client<br>
+          4. Le <strong>badge nominatif</strong> doit être porté en permanence dans les parties communes
+        </div>
+        <div class="section-title">📋 Ce que vous devez faire</div>
+        <ul class="steps">
+          <li><div class="step-num">1</div><span>Consultez les ressources pour comprendre la structure et les formules professionnelles.</span></li>
+          <li><div class="step-num">2</div><span>Complétez le bloc d'identification (De / À / Date / Objet / N° note).</span></li>
+          <li><div class="step-num">3</div><span>Rédigez une introduction de 2-3 phrases expliquant le contexte.</span></li>
+          <li><div class="step-num">4</div><span>Rédigez les 4 points en langage professionnel (phrases complètes, ton neutre).</span></li>
+          <li><div class="step-num">5</div><span>Précisez la date d'application et terminez par une formule de clôture.</span></li>
+          <li><div class="step-num">6</div><span>Vérifiez avec la grille d'autoévaluation.</span></li>
+        </ul>
+      </div>
+      <div class="tab-content" id="m5-ressources">
+        <div class="section-title">📚 Cliquez sur une ressource pour l'ouvrir</div>
+        <div class="res-list">
+          <div class="res-item"><button class="res-toggle" onclick="toggleRes(this)">📘 Qu'est-ce qu'une note de service ? <span class="arrow">▶</span></button><div class="res-body"><p>Une <strong>note de service</strong> est un document interne rédigé par un responsable pour informer le personnel d'une décision ou d'un changement de procédure.</p><p><strong>Structure obligatoire :</strong></p><ul><li><strong>En-tête :</strong> nom de l'entreprise, titre "NOTE DE SERVICE", numéro</li><li><strong>Bloc d'identification :</strong> DE / À / DATE / OBJET</li><li><strong>Corps :</strong> introduction + liste numérotée des points</li><li><strong>Clôture :</strong> date d'application, formule, signature</li></ul><div class="res-example"><strong>💡 Note de service ≠ Email</strong>C'est un document officiel archivé, rédigé sans abréviations ni langage familier. Elle engage la responsabilité de son auteur.</div></div></div>
+          <div class="res-item"><button class="res-toggle" onclick="toggleRes(this)">✍️ Formules professionnelles à utiliser <span class="arrow">▶</span></button><div class="res-body"><p><strong>Introductions :</strong></p><ul><li>"Suite aux remarques de plusieurs clients concernant…, la direction a décidé de…"</li><li>"Dans le cadre de l'amélioration de la qualité d'accueil, il a été décidé de…"</li></ul><p><strong>Pour annoncer les points :</strong></p><ul><li>"À compter du [date], il est demandé à l'ensemble du personnel de…"</li><li>"Il est désormais obligatoire de…"</li></ul><p><strong>Clôtures :</strong></p><ul><li>"Je reste disponible pour toute question relative à cette note."</li><li>"Je vous remercie de bien vouloir respecter ces nouvelles dispositions."</li></ul><div class="res-example"><strong>❌ À éviter / ✅ À écrire</strong>❌ "On commence à 14h maintenant"<br>✅ "À compter du 3 février 2025, l'heure de check-in est avancée à 14h00."</div></div></div>
+          <div class="res-item"><button class="res-toggle" onclick="toggleRes(this)">📄 Exemple annoté d'une note de service <span class="arrow">▶</span></button><div class="res-body"><div class="res-example" style="font-family:monospace;font-size:0.84em;line-height:1.9;"><strong>HÔTEL LE PRIEURÉ — NOTE DE SERVICE N° NS-2025-XX</strong><br>DE : Mme Renard &nbsp;|&nbsp; À : Tout le personnel<br>DATE : jj/mm/aaaa &nbsp;|&nbsp; OBJET : [Sujet]<br>──────────────────────────────────<br>[Introduction : 2-3 phrases de contexte]<br><br>Les nouvelles dispositions sont les suivantes :<br>1. [Premier point rédigé professionnellement]<br>2. [Deuxième point…]<br>3. [Troisième point…]<br>4. [Quatrième point…]<br><br>Ces dispositions entrent en vigueur le [date].<br>[Formule de clôture] — Signature : Mme Renard</div></div></div>
+          <div class="res-item"><button class="res-toggle" onclick="toggleRes(this)">🔤 Orthographe et registre professionnel <span class="arrow">▶</span></button><div class="res-body"><ul><li>Noms propres avec majuscule : <em>Mme Renard</em>, <em>Hôtel Le Prieuré</em></li><li>Heures : <em>14h00</em> ou <em>14 heures</em> (pas "14h" seul)</li><li>Virgule décimale : <em>85,00 €</em> (pas de point)</li><li>Phrases complètes, vocabulaire précis, pas de familiarités</li><li>Relire avant de valider !</li></ul><div class="res-example"><strong>❌ Exemples d'erreurs fréquentes</strong>"Merci de faire pareil" → imprécis<br>"bientot" → écrire "bientôt"<br>"M Bertrand" → écrire "M. Bertrand" (avec point)</div></div></div>
+        </div>
+      </div>
+      <div class="tab-content" id="m5-document">
+        <div class="section-title">📄 Note de service N° NS-2025-03</div>
+        <div class="doc-wrapper">
+          <div class="doc-header-strip">📝 NOTE DE SERVICE</div>
+          <div class="note-paper">
+            <div style="text-align:center;margin-bottom:16px;"><div style="font-weight:700;font-size:1.05em;color:#1a3a5c;">HÔTEL LE PRIEURÉ — AYDOILLES</div><div style="font-size:1em;font-weight:700;margin-top:6px;text-decoration:underline;">NOTE DE SERVICE N° <input class="f f-sm" type="text" placeholder="NS-…"></div></div>
+            <div class="note-header-grid">
+              <div class="nh-cell"><span class="nh-label">De :</span> <input class="f f-lg" type="text" placeholder="Émetteur…"></div>
+              <div class="nh-cell"><span class="nh-label">À :</span> <input class="f f-lg" type="text" placeholder="Destinataires…"></div>
+              <div class="nh-cell"><span class="nh-label">Date :</span> <input class="f f-md" type="date"></div>
+              <div class="nh-cell"><span class="nh-label">Objet :</span> <input class="f f-lg" type="text" placeholder="Objet de la note…"></div>
+            </div>
+            <div class="note-body-area">
+              <div class="note-pts-label">Introduction (contexte — 2 à 3 phrases) :</div>
+              <textarea class="f" rows="3" placeholder="Rédigez ici votre introduction en langage professionnel…"></textarea>
+              <div class="note-pts-label">Nouvelles dispositions :</div>
+              <div class="note-pt-row"><div class="npt-num">1</div><textarea class="f" rows="2" style="flex:1" placeholder="Rédigez le point 1 en langage professionnel…"></textarea></div>
+              <div class="note-pt-row"><div class="npt-num">2</div><textarea class="f" rows="2" style="flex:1" placeholder="Rédigez le point 2 en langage professionnel…"></textarea></div>
+              <div class="note-pt-row"><div class="npt-num">3</div><textarea class="f" rows="2" style="flex:1" placeholder="Rédigez le point 3 en langage professionnel…"></textarea></div>
+              <div class="note-pt-row"><div class="npt-num">4</div><textarea class="f" rows="2" style="flex:1" placeholder="Rédigez le point 4 en langage professionnel…"></textarea></div>
+              <div style="margin-top:14px;font-size:0.88em;display:flex;align-items:center;gap:8px;"><strong>Date d'application :</strong><input class="f f-md" type="date"></div>
+            </div>
+            <div class="doc-footer" style="margin-top:16px;">
+              <div class="doc-footer-col"><div class="df-label">Formule de clôture</div><textarea class="f" rows="2" placeholder="ex : Je reste disponible pour toute question. Cordialement,"></textarea></div>
+              <div class="doc-footer-col"><div class="df-label">Signature</div><div class="sign-box">Mme Renard</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="autoeval">
+          <div class="autoeval-title">🔍 Grille d'autoévaluation — Vérifiez votre travail avant de rendre</div>
+          <table>
+            <tr><th>Critère</th><th class="center">✅ Oui</th><th class="center">🔶 Partiellement</th><th class="center">❌ Non</th></tr>
+            <tr><td>J'ai complété le bloc De / À / Date / Objet et le numéro de note</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>Mon introduction explique clairement le contexte (2-3 phrases)</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai rédigé les 4 points en langage professionnel</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>Mes phrases sont complètes et précises (pas de familiarités)</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai indiqué la date d'application (3 février 2025)</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai rédigé une formule de clôture professionnelle</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+            <tr><td>J'ai relu et vérifié l'orthographe de ma note</td><td><div class="ae-radio"><button class="ae-btn oui" onclick="selAE(this)">Oui</button></div></td><td><div class="ae-radio"><button class="ae-btn partiel" onclick="selAE(this)">Partiellement</button></div></td><td><div class="ae-radio"><button class="ae-btn non" onclick="selAE(this)">Non</button></div></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="print-btn" onclick="window.print()">🖨️ Imprimer / Exporter en PDF</button>
+</div>
+
+<script>
+  function showMission(n){
+    document.querySelectorAll('.mission-card').forEach(c=>c.classList.remove('active'));
+    document.querySelectorAll('.missions-nav button').forEach(b=>b.classList.remove('active'));
+    document.getElementById('m'+n).classList.add('active');
+    document.querySelectorAll('.missions-nav button')[n-1].classList.add('active');
+  }
+  function showTab(mission,tab,btn){
+    const card=document.getElementById(mission);
+    card.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+    card.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.getElementById(mission+'-'+tab).classList.add('active');
+    btn.classList.add('active');
+  }
+  function toggleRes(btn){
+    const body=btn.nextElementSibling;
+    const isOpen=body.classList.contains('open');
+    btn.closest('.res-list').querySelectorAll('.res-body').forEach(b=>b.classList.remove('open'));
+    btn.closest('.res-list').querySelectorAll('.res-toggle').forEach(b=>b.classList.remove('open'));
+    if(!isOpen){body.classList.add('open');btn.classList.add('open');}
+  }
+  function selAE(btn){
+    const row=btn.closest('tr');
+    row.querySelectorAll('.ae-btn').forEach(b=>b.classList.remove('sel'));
+    btn.classList.add('sel');
+  }
+</script>
+</body>
+</html>
