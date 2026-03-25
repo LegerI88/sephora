@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Séphora Épinal – Scénario 2de Bac Pro MRC</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface2: #fff5f8;
+  --border: #f0c0d0;
+  --accent: #e8175d;
+  --accent2: #ff6b9d;
+  --gold: #e8175d;
+  --pole1: #c0005a;
+  --pole2: #8b1a6b;
+  --pole3: #1a7a6e;
+  --light1: rgba(192,0,90,0.07);
+  --light2: rgba(139,26,107,0.07);
+  --light3: rgba(26,122,110,0.07);
+  --white: #1a0a12;
+  --muted: #b06080;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Raleway',sans-serif;background:var(--bg);color:#2a1a1a;min-height:100vh;font-size:15px;}
+
+/* HEADER */
+.site-header{position:sticky;top:0;z-index:100;background:rgba(255,250,248,0.97);border-bottom:1px solid var(--border);backdrop-filter:blur(10px);box-shadow:0 2px 12px rgba(180,100,120,0.1);}
+.header-top{display:flex;align-items:center;gap:20px;padding:12px 28px;border-bottom:2px solid #c9748a;}
+.logo-zone{display:flex;align-items:center;gap:16px;}
+.seph-logo{font-family:'Playfair Display',serif;font-size:1.7rem;letter-spacing:4px;color:#2a1a1a;line-height:1;text-transform:uppercase;}
+.seph-logo span{color:var(--gold);}
+.logo-sub{font-family:'Raleway',sans-serif;font-size:0.65rem;font-weight:600;letter-spacing:5px;color:var(--muted);text-transform:uppercase;margin-top:3px;}
+.header-info{margin-left:auto;text-align:right;}
+.header-info h1{font-family:'Raleway',sans-serif;font-size:0.88rem;font-weight:600;color:#2a1a1a;letter-spacing:1px;}
+.header-info p{font-size:0.72rem;color:var(--muted);margin-top:3px;}
+.header-actions{display:flex;gap:8px;padding:7px 28px;background:#fff5f2;}
+.btn-action{font-family:'Raleway',sans-serif;padding:5px 14px;border-radius:2px;border:none;cursor:pointer;font-size:0.75rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;transition:all .2s;}
+.btn-print{background:#1e1e1e;color:var(--white);border:1px solid var(--border);}
+.btn-print:hover{background:#282828;}
+.btn-pdf{background:var(--gold);color:#0a0a0a;}
+.btn-pdf:hover{opacity:.88;}
+
+/* NAV */
+.nav-bar{background:#fff5f2;display:flex;gap:2px;padding:0 28px;overflow-x:auto;border-bottom:1px solid var(--border);}
+.nav-btn{background:none;border:none;border-bottom:3px solid transparent;color:#9a7070;cursor:pointer;font-family:'Raleway',sans-serif;font-size:0.76rem;font-weight:600;letter-spacing:2px;padding:11px 14px;white-space:nowrap;transition:all .2s;text-transform:uppercase;}
+.nav-btn:hover{color:#2a1a1a;}
+.nav-btn.active{color:var(--white);}
+.nav-btn.p0.active{border-bottom-color:#c9748a;}
+.nav-btn.p1.active{border-bottom-color:var(--pole1);}
+.nav-btn.p2.active{border-bottom-color:var(--pole2);}
+.nav-btn.p3.active{border-bottom-color:var(--pole3);}
+
+/* MAIN */
+.main{max-width:1040px;margin:0 auto;padding:28px 18px 60px;position:relative;z-index:1;}
+.section{display:none;}
+.section.active{display:block;}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 1fr;border-radius:6px;overflow:hidden;margin-bottom:26px;border:1px solid var(--border);}
+.hero-left{background:linear-gradient(135deg,#fce8f0,#fff5f8);padding:36px 36px;position:relative;overflow:hidden;}
+.hero-left::before{content:'✦';position:absolute;right:-10px;bottom:-20px;font-size:10rem;opacity:0.04;line-height:1;color:var(--gold);}
+.hero-eyebrow{font-family:'Raleway',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:12px;}
+.hero-title{font-family:'Playfair Display',serif;font-size:2.8rem;color:var(--white);line-height:1.1;margin-bottom:8px;}
+.hero-title span{color:#c9748a;}
+.hero-desc{font-size:0.85rem;color:var(--muted);line-height:1.8;margin-top:12px;max-width:360px;}
+.hero-right{background:#fff8f5;padding:26px;display:flex;flex-direction:column;gap:11px;justify-content:center;}
+.stat-card{background:#fff0f5;border:1px solid var(--border);border-radius:4px;padding:13px 17px;display:flex;align-items:center;gap:14px;}
+.stat-num{font-family:'Playfair Display',serif;font-size:2rem;line-height:1;color:#b8680b;}
+.stat-label{font-family:'Raleway',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:2px;color:var(--muted);text-transform:uppercase;line-height:1.4;}
+
+/* INFO GRID */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:22px;}
+.info-card{background:#ffffff;border:1px solid #e8d8d8;border-radius:4px;padding:16px 18px;border-left:3px solid #c9748a;box-shadow:0 1px 4px rgba(180,100,120,0.07);}
+.info-card.p1{border-left-color:var(--pole1);}
+.info-card.p2{border-left-color:var(--pole2);}
+.info-card.p3{border-left-color:var(--pole3);}
+.info-card h3{font-family:'Raleway',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:9px;}
+.info-card p,.info-card li{font-size:0.84rem;line-height:1.85;color:#5a3a40;}
+.info-card ul{padding-left:14px;}
+
+/* POLES OVERVIEW */
+.poles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px;}
+.pole-card{border-radius:4px;padding:18px 20px;border:1px solid var(--border);position:relative;overflow:hidden;}
+.pole-card.p1{background:linear-gradient(135deg,rgba(192,57,74,0.08),rgba(192,57,74,0.02));border-color:rgba(192,57,74,0.2);}
+.pole-card.p2{background:linear-gradient(135deg,rgba(138,76,122,0.08),rgba(138,76,122,0.02));border-color:rgba(138,76,122,0.2);}
+.pole-card.p3{background:linear-gradient(135deg,rgba(45,125,110,0.08),rgba(45,125,110,0.02));border-color:rgba(45,125,110,0.2);}
+.pole-card .pnum{font-family:'Playfair Display',serif;font-size:4rem;position:absolute;right:8px;top:-8px;opacity:0.06;line-height:1;}
+.pole-card h3{font-family:'Raleway',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:1px;margin-bottom:10px;text-transform:uppercase;}
+.pole-card.p1 h3{color:#c0394a;}
+.pole-card.p2 h3{color:#8a4c7a;}
+.pole-card.p3 h3{color:#2d7d6e;}
+.pole-card ul{padding-left:14px;font-size:0.8rem;color:var(--muted);line-height:2;}
+
+/* POLE HEADER */
+.pole-header{display:flex;align-items:center;gap:16px;padding:20px 24px;border-radius:6px;margin-bottom:20px;border:1px solid #e8d0d8;background:#ffffff;box-shadow:0 2px 8px rgba(180,100,120,0.08);}
+.pole-header.p1{border-left:5px solid var(--pole1);}
+.pole-header.p2{border-left:5px solid var(--pole2);}
+.pole-header.p3{border-left:5px solid var(--pole3);}
+.pole-big-num{font-family:'Playfair Display',serif;font-size:3.5rem;line-height:1;opacity:0.1;}
+.p1 .pole-big-num{color:var(--pole1);}
+.p2 .pole-big-num{color:var(--pole2);}
+.p3 .pole-big-num{color:var(--pole3);}
+.pole-header h2{font-family:'Raleway',sans-serif;font-size:1.05rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.pole-header p{font-size:0.82rem;color:var(--muted);margin-top:4px;line-height:1.6;}
+
+/* MISSION */
+.mission{background:#ffffff;border:1px solid #e8d8d8;border-radius:6px;margin-bottom:12px;overflow:hidden;box-shadow:0 2px 8px rgba(180,100,120,0.06);}
+.mission-header{display:flex;align-items:center;gap:14px;padding:15px 20px;cursor:pointer;transition:opacity .2s;user-select:none;}
+.mission-header:hover{opacity:.88;}
+.p1 .mission-header{background:linear-gradient(90deg,rgba(192,57,74,0.12),rgba(252,240,244,0.6));}
+.p2 .mission-header{background:linear-gradient(90deg,rgba(138,76,122,0.12),rgba(248,240,252,0.6));}
+.p3 .mission-header{background:linear-gradient(90deg,rgba(45,125,110,0.12),rgba(240,252,248,0.6));}
+.mission-num{font-family:'Playfair Display',serif;font-size:1.6rem;line-height:1;opacity:.45;min-width:28px;}
+.p1 .mission-num{color:var(--pole1);}
+.p2 .mission-num{color:var(--pole2);}
+.p3 .mission-num{color:var(--pole3);}
+.mission-header h3{font-family:'Raleway',sans-serif;font-size:0.93rem;font-weight:700;letter-spacing:.5px;flex:1;}
+.mission-header .msub{font-size:.74rem;color:#9a7070;margin-top:2px;letter-spacing:.3px;}
+.mission-tag{font-family:'Raleway',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:2px;white-space:nowrap;}
+.p1 .mission-tag{background:rgba(192,57,74,.1);color:#c0394a;border:1px solid rgba(181,68,74,.28);}
+.p2 .mission-tag{background:rgba(138,76,122,.1);color:#8a4c7a;border:1px solid rgba(107,76,138,.28);}
+.p3 .mission-tag{background:rgba(45,125,110,.1);color:#2d7d6e;border:1px solid rgba(45,125,110,.28);}
+.toggle-icon{font-size:.8rem;color:#c9748a;transition:transform .3s;}
+.mission.open .toggle-icon{transform:rotate(180deg);}
+.mission-body{display:none;padding:22px;border-top:1px solid var(--border);flex-direction:column;gap:16px;}
+.mission.open .mission-body{display:flex;}
+
+/* BLOCKS */
+.block-label{font-family:'Raleway',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:4px 10px;border-radius:2px;display:inline-block;margin-bottom:7px;}
+.block-label.ctx{background:rgba(201,168,76,.1);color:var(--gold);border:1px solid rgba(201,168,76,.2);}
+.block-label.tsk{background:rgba(99,179,237,.1);color:#63b3ed;border:1px solid rgba(99,179,237,.2);}
+.block-label.res{background:rgba(72,187,120,.1);color:#48bb78;border:1px solid rgba(72,187,120,.2);}
+.block-label.ann{background:rgba(183,148,244,.1);color:#b794f4;border:1px solid rgba(183,148,244,.2);}
+.block-label.auto{background:rgba(252,129,74,.1);color:#fc814a;border:1px solid rgba(252,129,74,.2);}
+
+.ctx-box{background:#fff8f6;border:1px solid #e8d0d8;border-radius:4px;padding:15px 18px;font-size:.86rem;line-height:1.82;color:#4a3030;}
+.bubble{background:#fff8f2;border-left:3px solid var(--gold);border-radius:0 4px 4px 0;padding:9px 15px;margin:9px 0;font-style:italic;font-size:.85rem;color:#c8c0b8;}
+.bubble.client{border-left-color:#c0394a;}
+.bubble.mgr{border-left-color:#2d7d6e;}
+
+.task-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.task-list li{background:#f0f8ff;border-left:3px solid rgba(99,179,237,.35);border-radius:0 4px 4px 0;padding:9px 13px;font-size:.85rem;line-height:1.65;color:#5a3a40;}
+.task-list li strong{color:var(--white);}
+
+.resp{min-height:52px;background:#fffaf8;border:1.5px dashed #d4a0b0;border-radius:4px;padding:8px 11px;font-size:.85rem;color:#2a1a1a;outline:none;margin:3px 0 7px;transition:all .2s;font-family:'Raleway',sans-serif;}
+.resp:focus{background:#fffbef;border-color:var(--gold);}
+.resp:empty::before{content:attr(data-placeholder);color:#3a3030;font-style:italic;font-size:.8rem;pointer-events:none;}
+
+.res-box{background:#f0fdf4;border:1px solid rgba(72,187,120,.12);border-radius:4px;padding:13px 17px;margin-top:4px;}
+.res-title{font-family:'Raleway',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#48bb78;margin-bottom:8px;}
+.res-box ul{padding-left:16px;font-size:.84rem;line-height:1.95;color:#5a3a40;}
+
+/* ANNEXES */
+.ann-box{background:#faf5ff;border:1px solid rgba(183,148,244,.12);border-radius:4px;padding:16px;}
+.ann-title{font-family:'Raleway',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#b794f4;margin-bottom:11px;padding-bottom:7px;border-bottom:1px solid rgba(183,148,244,.12);}
+table.ann-table{width:100%;border-collapse:collapse;font-size:.83rem;}
+.ann-table th{background:#3a1a2a;color:#ffffff;padding:8px 11px;text-align:left;font-family:'Raleway',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.ann-table td{padding:7px 11px;border:1px solid var(--border);color:#5a3a40;vertical-align:top;line-height:1.5;}
+.ann-table tr:nth-child(even) td{background:#fdf8f8;}
+.editable{background:#fffaf8 !important;border:1.5px dashed rgba(201,168,76,.3) !important;border-radius:3px;outline:none;padding:6px 10px !important;cursor:text;}
+.editable:focus{background:#fff0f5 !important;border-color:var(--gold) !important;}
+.editable:empty::before{content:attr(data-placeholder);color:#3a3030;font-style:italic;font-size:.78rem;pointer-events:none;}
+
+/* CALCUL BOX */
+.calc-box{background:#fffbf0;border:1px solid rgba(201,168,76,.2);border-radius:4px;padding:14px 18px;}
+.calc-title{font-family:'Raleway',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.calc-line{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.86rem;color:#5a3a40;}
+.calc-line:last-child{border-bottom:none;font-weight:600;color:var(--white);}
+.calc-op{color:var(--gold);font-weight:700;min-width:20px;}
+.calc-field{flex:1;background:#ffffff;border:1px dashed #d4b060;border-radius:3px;padding:4px 10px;color:var(--white);outline:none;font-family:'Raleway',sans-serif;font-size:.85rem;}
+.calc-field:focus{border-color:var(--gold);}
+.calc-field:empty::before{content:attr(data-placeholder);color:#3a3030;font-style:italic;font-size:.78rem;pointer-events:none;}
+
+/* AUTOEVAL */
+table.ae-table{width:100%;border-collapse:collapse;font-size:.83rem;}
+.ae-table th{background:#3a1a2a;color:#ffffff;padding:8px 11px;font-family:'Raleway',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-align:center;}
+.ae-table th:first-child{text-align:left;}
+.ae-table td{padding:8px 11px;border:1px solid var(--border);color:#5a3a40;vertical-align:middle;}
+.ae-table tr:nth-child(even) td{background:#fdf8f8;}
+.chk-col{width:70px;text-align:center;}
+.chk-cell{display:flex;justify-content:center;}
+.chk-btn{width:27px;height:27px;border-radius:50%;border:2px solid var(--border);background:transparent;cursor:pointer;font-size:.68rem;font-weight:700;color:var(--muted);transition:all .2s;}
+.chk-btn.oui{background:#22c55e;border-color:#16a34a;color:white;}
+.chk-btn.part{background:var(--gold);border-color:#a07c20;color:#0a0a0a;}
+.chk-btn.non{background:#ef4444;border-color:#dc2626;color:white;}
+.ae-legend{display:flex;gap:12px;margin-top:7px;justify-content:flex-end;font-size:.76rem;color:#9a7070;}
+.ae-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;}
+.ae-dot.oui{background:#22c55e;}
+.ae-dot.part{background:var(--gold);}
+.ae-dot.non{background:#ef4444;}
+
+.disclaimer{background:#fffbef;border:1px solid rgba(201,168,76,.18);border-radius:4px;padding:13px 17px;font-size:.78rem;color:#6a4a50;line-height:1.75;margin-top:18px;}
+
+@media print{
+  .site-header,.nav-bar,.header-actions,.save-alert{display:none!important;}
+  .section{display:block!important;}
+  .mission-body{display:flex!important;}
+  .resp,.editable,.calc-field{border:1px dashed #555!important;min-height:32px;}
+
+  /* ── Grilles autoévaluation : forcer l'affichage des couleurs à l'impression ── */
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+  .chk-btn { width:22px!important; height:22px!important; border-radius:50%!important; border:2px solid #ccc!important; display:inline-block!important; }
+  .chk-btn.oui { background:#22c55e!important; border-color:#16a34a!important; }
+  .chk-btn.oui::after { content:"✓"; color:white!important; font-size:11px!important; font-weight:bold!important; display:block; text-align:center; line-height:18px; }
+  .chk-btn.part { background:#f59e0b!important; border-color:#d97706!important; }
+  .chk-btn.part::after { content:"~"; color:white!important; font-size:13px!important; font-weight:bold!important; display:block; text-align:center; line-height:18px; }
+  .chk-btn.non { background:#ef4444!important; border-color:#dc2626!important; }
+  .chk-btn.non::after { content:"✗"; color:white!important; font-size:11px!important; font-weight:bold!important; display:block; text-align:center; line-height:18px; }
+  .chk-col { text-align:center!important; }
+  .ae-table { border-collapse:collapse!important; width:100%!important; }
+  .ae-table td, .ae-table th { border:1px solid #ddd!important; padding:6px 8px!important; }
+}
+
+/* ── Surcharges thème clair ── */
+body { color: #2a1a1a; }
+.res-box ul, .ann-table td, .ae-table td, .calc-line { color: #4a3a4a; }
+.task-list li { background:#f8f0f8; border-left-color:#c9748a; color:#3a2030; }
+.info-card p, .info-card li { color:#5a3a40; }
+.pole-header p { color:#8a6060; }
+.header-info p { color:#9a7070; }
+.calc-line { border-bottom-color:#e8d8c0; }
+.calc-line:last-child { color:#2a1a1a; font-weight:600; }
+.hero-desc { color:#5a3a40 !important; }
+.stat-label { color:#9a7070 !important; }
+.logo-sub { color:#b08080 !important; }
+.hero-eyebrow { color:#c9748a !important; }
+.pole-big-num { color: inherit; opacity:.08; }
+.bubble { background:#fff0f5; border-left-color:#c9748a; color:#6a3a4a; }
+.bubble.mgr { border-left-color:#2d7d6e; background:#f0fdf8; color:#1a4a3a; }
+.bubble.client { border-left-color:#c0394a; background:#fff5f5; color:#6a1a2a; }
+.resp:focus { background:#fff5f8 !important; border-color:#c9748a !important; }
+.ae-table tr:nth-child(even) td { background:#fdf8fa; }
+.ann-table tr:nth-child(even) td { background:#fdf8fa; }
+.chk-btn { border-color:#e8d0d8; color:#c9748a; }
+.disclaimer { background:#fffbf0; border-color:#e8d080; color:#6a4a30; }
+.res-box { background:#f0fdf6; border-color:#a8d8b8; }
+.res-title { color:#2d7d6e; }
+.ann-box { background:#fdf8ff; border-color:#d8c0e8; }
+.ann-title { color:#8a4c7a; border-bottom-color:#e8d0f0; }
+.calc-box { background:#fffbf0; border-color:#e8d080; }
+.calc-title { color:#b8860b; }
+.block-label.ctx { background:rgba(201,168,76,.08); color:#a07020; border-color:rgba(201,168,76,.25); }
+.pole-card { border-color:#e8d8e0 !important; }
+.pole-card .pnum { opacity:.06; color:#c9748a; }
+.hero-left::before { color:#c9748a; opacity:.07; }
+.section { background:transparent; }
+
+.save-alert{background:#fff3cd;border:1.5px solid #f0a020;border-radius:4px;padding:9px 18px;font-size:.8rem;color:#7a4a00;line-height:1.7;}
+.save-alert strong{color:#c06000;}
+
+/* ══ THÈME ROSE FRAMBOISE ══ */
+body { background: #ffffff; color: #1a0a12; }
+
+/* Header */
+.site-header { background: rgba(255,255,255,0.98) !important; border-bottom: 1px solid #f0c0d0; }
+.header-top { border-bottom: 3px solid #e8175d !important; }
+.header-actions { background: #fff0f5 !important; }
+.nav-bar { background: #fff0f5 !important; }
+.nav-btn { color: #c06080 !important; }
+.nav-btn:hover { color: #e8175d !important; }
+.nav-btn.p0.active { border-bottom-color: #e8175d !important; }
+.nav-btn.p1.active { border-bottom-color: #c0005a !important; }
+.nav-btn.p2.active { border-bottom-color: #8b1a6b !important; }
+.nav-btn.p3.active { border-bottom-color: #1a7a6e !important; }
+
+/* Boutons */
+.btn-print { background: #fff0f5 !important; color: #c0005a !important; border-color: #f0c0d0 !important; }
+.btn-pdf { background: #e8175d !important; color: #ffffff !important; }
+
+/* Alerte sauvegarde */
+.save-alert { background: #fff0f5 !important; border-color: #e8175d !important; color: #8b0030 !important; }
+.save-alert strong { color: #c0005a !important; }
+
+/* Hero */
+.hero-left { background: linear-gradient(135deg, #fff0f5, #ffe0ee) !important; }
+.hero-right { background: #fff8fb !important; }
+.hero-eyebrow { color: #e8175d !important; }
+.hero-title { color: #1a0a12 !important; }
+.hero-title span { color: #e8175d !important; }
+.hero-desc { color: #5a2030 !important; }
+.hero-left::before { color: #e8175d !important; opacity: .06 !important; }
+.stat-card { background: #fff0f5 !important; border-color: #f0c0d0 !important; }
+.stat-num { color: #e8175d !important; }
+.stat-label { color: #b06080 !important; }
+
+/* Logo */
+.seph-logo { color: #1a0a12 !important; }
+.seph-logo span { color: #e8175d !important; }
+.logo-sub { color: #c06080 !important; }
+.header-info h1 { color: #1a0a12 !important; }
+.header-info p { color: #b06080 !important; }
+
+/* Info cards */
+.info-card { background: #ffffff !important; border-color: #f0c0d0 !important; box-shadow: 0 2px 8px rgba(232,23,93,0.08) !important; }
+.info-card { border-left-color: #e8175d !important; }
+.info-card.p1 { border-left-color: #c0005a !important; }
+.info-card.p2 { border-left-color: #8b1a6b !important; }
+.info-card.p3 { border-left-color: #1a7a6e !important; }
+.info-card h3 { color: #b06080 !important; }
+.info-card p, .info-card li { color: #4a1a2a !important; }
+
+/* Poles grid */
+.pole-card { border-color: #f0c0d0 !important; }
+.pole-card.p1 { background: linear-gradient(135deg,rgba(192,0,90,0.08),rgba(192,0,90,0.02)) !important; }
+.pole-card.p2 { background: linear-gradient(135deg,rgba(139,26,107,0.08),rgba(139,26,107,0.02)) !important; }
+.pole-card.p3 { background: linear-gradient(135deg,rgba(26,122,110,0.08),rgba(26,122,110,0.02)) !important; }
+.pole-card .pnum { color: #e8175d !important; opacity: .07 !important; }
+.pole-card ul { color: #a06070 !important; }
+
+/* Pole header */
+.pole-header { background: #ffffff !important; border-color: #f0c0d0 !important; box-shadow: 0 2px 8px rgba(232,23,93,0.1) !important; }
+.pole-header.p1 { border-left-color: #c0005a !important; }
+.pole-header.p2 { border-left-color: #8b1a6b !important; }
+.pole-header.p3 { border-left-color: #1a7a6e !important; }
+.pole-header h2 { color: #1a0a12 !important; }
+.pole-header p { color: #a06070 !important; }
+.pole-big-num { opacity: .07 !important; }
+
+/* Missions */
+.mission { background: #ffffff !important; border-color: #f0c0d0 !important; box-shadow: 0 2px 10px rgba(232,23,93,0.07) !important; }
+.p1 .mission-header { background: linear-gradient(90deg, rgba(192,0,90,0.1), rgba(255,240,248,0.8)) !important; }
+.p2 .mission-header { background: linear-gradient(90deg, rgba(139,26,107,0.1), rgba(255,240,252,0.8)) !important; }
+.p3 .mission-header { background: linear-gradient(90deg, rgba(26,122,110,0.1), rgba(240,252,250,0.8)) !important; }
+.mission-header h3 { color: #1a0a12 !important; }
+.mission-header .msub { color: #b06080 !important; }
+.toggle-icon { color: #e8175d !important; }
+.p1 .mission-tag { background: rgba(192,0,90,0.1) !important; color: #c0005a !important; border-color: rgba(192,0,90,0.25) !important; }
+.p2 .mission-tag { background: rgba(139,26,107,0.1) !important; color: #8b1a6b !important; border-color: rgba(139,26,107,0.25) !important; }
+.p3 .mission-tag { background: rgba(26,122,110,0.1) !important; color: #1a7a6e !important; border-color: rgba(26,122,110,0.25) !important; }
+.mission-body { border-top-color: #f0c0d0 !important; }
+
+/* Blocks labels */
+.block-label.ctx { background: rgba(232,23,93,0.07) !important; color: #c0005a !important; border-color: rgba(232,23,93,0.2) !important; }
+.block-label.tsk { background: rgba(30,120,200,0.07) !important; color: #1a60c0 !important; border-color: rgba(30,120,200,0.2) !important; }
+.block-label.res { background: rgba(26,122,110,0.07) !important; color: #1a7a6e !important; border-color: rgba(26,122,110,0.2) !important; }
+.block-label.ann { background: rgba(139,26,107,0.07) !important; color: #8b1a6b !important; border-color: rgba(139,26,107,0.2) !important; }
+.block-label.auto { background: rgba(232,23,93,0.07) !important; color: #c0005a !important; border-color: rgba(232,23,93,0.2) !important; }
+
+/* Contexte box */
+.ctx-box { background: #fff8fb !important; border-color: #f0c0d0 !important; color: #4a1a2a !important; }
+
+/* Bubbles */
+.bubble { background: #fff0f5 !important; border-left-color: #e8175d !important; color: #6a1a3a !important; }
+.bubble.mgr { background: #f0fbf8 !important; border-left-color: #1a7a6e !important; color: #1a4a3a !important; }
+.bubble.client { background: #fff5f8 !important; border-left-color: #c0005a !important; color: #6a0a2a !important; }
+
+/* Task list */
+.task-list li { background: #fff5f8 !important; border-left-color: #e8175d !important; color: #3a0a1a !important; }
+.task-list li strong { color: #1a0a12 !important; }
+
+/* Zones de saisie */
+.resp { background: #ffffff !important; border-color: #f0c0d0 !important; color: #1a0a12 !important; }
+.resp:focus { background: #fff5f8 !important; border-color: #e8175d !important; }
+
+/* Ressources */
+.res-box { background: #f0fbf8 !important; border-color: #a0d8c8 !important; }
+.res-title { color: #1a7a6e !important; }
+.res-box ul { color: #1a3a30 !important; }
+
+/* Annexes */
+.ann-box { background: #fdf5ff !important; border-color: #e0b0f0 !important; }
+.ann-title { color: #8b1a6b !important; border-bottom-color: #e0c0f0 !important; }
+.ann-table th { background: #c0005a !important; color: #ffffff !important; }
+.ann-table td { color: #3a0a1a !important; border-color: #f0c0d0 !important; }
+.ann-table tr:nth-child(even) td { background: #fff5f8 !important; }
+.editable { background: #fff8fb !important; border-color: #f0b0c8 !important; }
+.editable:focus { background: #fff0f5 !important; border-color: #e8175d !important; }
+
+/* Calcul */
+.calc-box { background: #fff5f8 !important; border-color: #f0b0c8 !important; }
+.calc-title { color: #c0005a !important; }
+.calc-line { border-bottom-color: #f0c0d0 !important; color: #3a0a1a !important; }
+.calc-line:last-child { color: #1a0a12 !important; }
+.calc-op { color: #e8175d !important; }
+.calc-field { background: #ffffff !important; border-color: #f0b0c8 !important; color: #1a0a12 !important; }
+.calc-field:focus { border-color: #e8175d !important; }
+
+/* Autoéval */
+.ae-table th { background: #c0005a !important; color: #ffffff !important; }
+.ae-table td { color: #3a0a1a !important; border-color: #f0c0d0 !important; }
+.ae-table tr:nth-child(even) td { background: #fff8fb !important; }
+.ae-legend { color: #b06080 !important; }
+.chk-btn { border-color: #f0b0c8 !important; color: #e8175d !important; }
+
+/* Disclaimer */
+.disclaimer { background: #fff5f8 !important; border-color: #f0c0d0 !important; color: #5a1a2a !important; }
+
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-top">
+    <div class="logo-zone">
+      <div>
+        <div class="seph-logo">Séph<span>ora</span></div>
+        <div class="logo-sub">Épinal</div>
+      </div>
+    </div>
+    <div class="header-info">
+      <h1>LÉGER Isabelle · Enseignante Éco-Gestion</h1>
+      <p>Scénario pédagogique · 2de Bac Pro MRC</p>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="btn-action btn-print" onclick="window.print()">🖨️ Imprimer</button>
+    <button class="btn-action btn-pdf" onclick="window.print()">💾 Sauvegarder en PDF</button>
+  </div>
+  <div class="save-alert">
+    ⚠️ <strong>N'oublie pas !</strong> Sauvegarde ton travail en PDF <strong>avant la fin de l'heure</strong> et dépose-le immédiatement sur ton <strong>Digipad personnel</strong> — sans sauvegarde, tout ce que tu as écrit sera <strong>définitivement perdu</strong> à la fermeture de l'onglet.
+  </div>
+  <nav class="nav-bar">
+    <button class="nav-btn p0 active" onclick="show('accueil',this)">✦ La boutique</button>
+    <button class="nav-btn p1" onclick="show('pole1',this)">Pôle 1 – Encaissement & calcul</button>
+    <button class="nav-btn p2" onclick="show('pole2',this)">Pôle 2 – Merchandising</button>
+    <button class="nav-btn p3" onclick="show('pole3',this)">Pôle 3 – Communication & réseaux</button>
+  </nav>
+</header>
+
+<div class="main">
+
+<!-- ===== PAGE ACCUEIL ===== -->
+<div class="section active" id="accueil">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Scénario pédagogique · 2de Bac Pro MRC</div>
+      <div class="hero-title">Séph<span>ora</span><br>Épinal</div>
+      <div class="hero-desc">Tu effectues ton stage chez <strong>Séphora Épinal</strong>, aux Portes de la Moselle. Ta responsable, <strong>Inès</strong>, t'accueille le premier matin : <em>"Ici on vend de la beauté, mais d'abord on vend une expérience. Tu vas tout apprendre : l'encaissement, la mise en scène des produits et la communication avec notre clientèle."</em></div>
+    </div>
+    <div class="hero-right">
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Pôles de<br>compétences</div></div>
+      <div class="stat-card"><div class="stat-num">9</div><div class="stat-label">Missions à<br>accomplir</div></div>
+      <div class="stat-card"><div class="stat-num">2de</div><div class="stat-label">Bac Pro<br>MRC</div></div>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <h3>🏪 La boutique</h3>
+      <ul>
+        <li>Séphora – Centre commercial Les Portes de la Moselle, Épinal</li>
+        <li>Enseigne cosmétique premium internationale</li>
+        <li>Parfums, maquillage, soins, accessoires</li>
+        <li>Clientèle variée : ados, adultes, hommes, cadeaux</li>
+      </ul>
+    </div>
+    <div class="info-card p1">
+      <h3>👩‍💼 Inès – Ta responsable</h3>
+      <ul>
+        <li>Responsable adjointe du magasin</li>
+        <li>Elle supervise ton stage au quotidien</li>
+        <li>Rigoureuse sur les procédures caisse</li>
+        <li>Passionnée par le merchandising</li>
+      </ul>
+    </div>
+    <div class="info-card p2">
+      <h3>💄 L'équipe</h3>
+      <ul>
+        <li>Léa – conseillère beauté maquillage</li>
+        <li>Karim – conseiller parfums</li>
+        <li>Sofia – responsable soin & skincare</li>
+        <li>Toute l'équipe t'encadre selon les rayons</li>
+      </ul>
+    </div>
+    <div class="info-card p3">
+      <h3>📋 Infos pratiques</h3>
+      <ul>
+        <li>Horaires : 10h–20h (lu–sa), 11h–19h (di)</li>
+        <li>Ticket moyen : 45–60 € par client</li>
+        <li>Carte Beauty : programme fidélité Séphora</li>
+        <li>Instagram : @sephoraepinal (fictif)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="poles-grid">
+    <div class="pole-card p1"><div class="pnum">01</div>
+      <h3>💳 Encaissement & calcul</h3>
+      <ul>
+        <li>M1.1 – Encaisser et rendre la monnaie</li>
+        <li>M1.2 – Appliquer une promotion et calculer une remise</li>
+        <li>M1.3 – Gérer un problème en caisse</li>
+      </ul>
+    </div>
+    <div class="pole-card p2"><div class="pnum">02</div>
+      <h3>🖼️ Merchandising & mise en rayon</h3>
+      <ul>
+        <li>M2.1 – Réimplanter un linéaire parfums</li>
+        <li>M2.2 – Créer une mise en avant promotionnelle</li>
+        <li>M2.3 – Étiqueter et contrôler les prix</li>
+      </ul>
+    </div>
+    <div class="pole-card p3"><div class="pnum">03</div>
+      <h3>📱 Communication & réseaux sociaux</h3>
+      <ul>
+        <li>M3.1 – Rédiger un post Instagram pour un nouveau produit</li>
+        <li>M3.2 – Créer un contenu story pour une promo</li>
+        <li>M3.3 – Répondre à un avis client en ligne</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="disclaimer">⚠️ <strong>Note pédagogique :</strong> Ce scénario est entièrement fictif à des fins pédagogiques. Les situations, personnages (Inès, Léa, Karim, Sofia), prix et promotions présentés sont inventés. Séphora est une enseigne réelle mais ce document n'est pas produit ni validé par la marque. Les données chiffrées sont fictives et destinées à l'entraînement au calcul commercial.</div>
+</div>
+
+<!-- ===== PÔLE 1 – ENCAISSEMENT ===== -->
+<div class="section" id="pole1">
+  <div class="pole-header p1">
+    <div class="pole-big-num">01</div>
+    <div>
+      <h2>Pôle 1 – Encaissement & calcul</h2>
+      <p>Compétences travaillées : maîtriser les procédures d'encaissement, calculer le rendu monnaie, appliquer des remises et promotions, gérer les situations imprévues en caisse.</p>
+    </div>
+  </div>
+
+  <!-- M1.1 -->
+  <div class="mission p1">
+    <div class="mission-header" onclick="tog(this)">
+      <span class="mission-num">M1</span>
+      <div><h3>Premier passage en caisse – Encaisser et rendre la monnaie</h3><div class="msub">Procédure d'encaissement · Rendu monnaie · Carte fidélité</div></div>
+      <span class="mission-tag">Caisse</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="mission-body">
+      <div><div class="block-label ctx">🟡 Contexte</div>
+        <div class="ctx-box">
+          <p>C'est ton premier passage en caisse. Inès t'a formé(e) ce matin sur les procédures. Une cliente se présente avec ses articles :</p>
+          <ul style="margin:10px 0 10px 20px;font-size:.86rem;line-height:2;color:#5a3a40;">
+            <li>1 fond de teint <strong>Nars – 42,00 €</strong></li>
+            <li>1 mascara <strong>L'Oréal – 14,50 €</strong></li>
+            <li>1 soin lèvres <strong>Dior – 23,00 €</strong></li>
+          </ul>
+          <p>La cliente paie en espèces avec un billet de <strong>100 €</strong>. Elle demande aussi si elle peut avoir ses points sur sa carte Séphora Beauty.</p>
+          <div class="bubble mgr">"Pour chaque encaissement : tu scannes les articles, tu annonces le total, tu proposes la carte fidélité AVANT d'encaisser, tu encaisses, tu rends la monnaie en la comptant à voix haute. Dans cet ordre, toujours."</div>
+        </div>
+      </div>
+      <div><div class="block-label tsk">🔵 Tes tâches</div>
+        <ol class="task-list">
+          <li><strong>Tâche 1 :</strong> Calcule le <strong>total de la transaction</strong> (Annexe A1).</li>
+          <li><strong>Tâche 2 :</strong> Calcule le <strong>rendu monnaie</strong> à partir du billet de 100 €. Décompose-le en billets et pièces.</li>
+          <div class="calc-box" style="margin:6px 0 8px;">
+            <div class="calc-title">🧮 Zone de calcul – Rendu monnaie</div>
+            <div class="calc-line"><span class="calc-op">=</span><span style="min-width:120px;font-size:.84rem;">Total à payer</span><div class="calc-field editable" contenteditable="true" data-placeholder="... €"></div></div>
+            <div class="calc-line"><span class="calc-op">−</span><span style="min-width:120px;font-size:.84rem;">Montant remis</span><div class="calc-field editable" contenteditable="true" data-placeholder="100,00 €"></div></div>
+            <div class="calc-line"><span class="calc-op">=</span><span style="min-width:120px;font-size:.84rem;font-weight:700;">Rendu monnaie</span><div class="calc-field editable" contenteditable="true" data-placeholder="... €"></div></div>
+          </div>
+          <li><strong>Tâche 3 :</strong> Écris la <strong>phrase exacte</strong> que tu dis à la cliente en lui rendant la monnaie.</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+          <li><strong>Tâche 4 :</strong> La cliente n'a pas sa carte Séphora Beauty sur elle. Elle demande si ses points peuvent quand même être ajoutés. Que lui réponds-tu ?</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+          <li><strong>Tâche 5 :</strong> Complète l'annexe A1 – ticket de caisse.</li>
+        </ol>
+      </div>
+      <div><div class="block-label res">🟢 Ressources</div>
+        <div class="res-box">
+          <div class="res-title">💳 Ressource 1 – Les 6 étapes de l'encaissement Séphora</div>
+          <ul>
+            <li><strong>1. Accueillir</strong> le client à la caisse avec le sourire</li>
+            <li><strong>2. Scanner</strong> chaque article et vérifier le prix affiché</li>
+            <li><strong>3. Proposer</strong> la carte fidélité Beauty AVANT l'encaissement</li>
+            <li><strong>4. Annoncer</strong> le total clairement : "Votre total est de XX,XX €"</li>
+            <li><strong>5. Encaisser</strong> et vérifier le moyen de paiement</li>
+            <li><strong>6. Rendre la monnaie</strong> à voix haute en détaillant les coupures</li>
+          </ul>
+        </div>
+      </div>
+      <div><div class="block-label ann">🟣 Annexe A1 – Ticket de caisse simplifié</div>
+        <div class="ann-box">
+          <div class="ann-title">Annexe A1 – À compléter</div>
+          <table class="ann-table">
+            <tr><th>Article</th><th>Prix unitaire</th><th>Qté</th><th>Total ligne</th></tr>
+            <tr><td>Fond de teint Nars</td><td>42,00 €</td><td>1</td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+            <tr><td>Mascara L'Oréal</td><td>14,50 €</td><td>1</td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+            <tr><td>Soin lèvres Dior</td><td>23,00 €</td><td>1</td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+            <tr><td colspan="3"><strong>TOTAL</strong></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+            <tr><td colspan="3">Montant remis</td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+            <tr><td colspan="3"><strong>RENDU MONNAIE</strong></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+          </table>
+        </div>
+      </div>
+      <div><div class="block-label auto">🔴 Autoévaluation</div>
+        <table class="ae-table">
+          <thead><tr><th>Critère</th><th class="chk-col">✅ Oui</th><th class="chk-col">⚠️ Part.</th><th class="chk-col">❌ Non</th></tr></thead>
+          <tbody>
+            <tr><td>Le total est correct</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>Le rendu monnaie est exact et décomposé</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>La formule de rendu monnaie est professionnelle et à voix haute</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>J'ai répondu correctement sur la carte fidélité sans carte</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+          </tbody>
+        </table>
+        <div class="ae-legend"><span><span class="ae-dot oui"></span>Oui</span><span><span class="ae-dot part"></span>Partiellement</span><span><span class="ae-dot non"></span>Non</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- M1.2 -->
+  <div class="mission p1">
+    <div class="mission-header" onclick="tog(this)">
+      <span class="mission-num">M2</span>
+      <div><h3>Soldes d'été ! – Appliquer une remise et calculer le prix soldé</h3><div class="msub">Remise % · Prix soldé · TVA · Calcul commercial</div></div>
+      <span class="mission-tag">Calcul</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="mission-body">
+      <div><div class="block-label ctx">🟡 Contexte</div>
+        <div class="ctx-box">
+          <p>C'est le premier jour des soldes. Inès t'explique :</p>
+          <div class="bubble mgr">"Les remises s'appliquent sur le prix de vente TTC affiché. Aujourd'hui : -30% sur tous les parfums et -20% sur les soins. Tu dois être capable de calculer le prix soldé de tête ou sur papier si la caisse bugue."</div>
+          <p style="margin-top:10px;">Un client se présente avec :</p>
+          <ul style="margin:10px 0 10px 20px;font-size:.86rem;line-height:2;color:#5a3a40;">
+            <li>1 parfum <strong>Yves Saint Laurent Libre – 88,00 €</strong> (rayon parfums → -30%)</li>
+            <li>1 crème visage <strong>Charlotte Tilbury – 55,00 €</strong> (rayon soins → -20%)</li>
+            <li>1 rouge à lèvres <strong>Chanel – 38,00 €</strong> (hors soldes)</li>
+          </ul>
+          <p>Le client paie par carte bancaire.</p>
+        </div>
+      </div>
+      <div><div class="block-label tsk">🔵 Tes tâches</div>
+        <ol class="task-list">
+          <li><strong>Tâche 1 :</strong> Calcule le <strong>prix soldé du parfum YSL</strong> après -30%. Montre le calcul.</li>
+          <div class="calc-box" style="margin:6px 0 8px;">
+            <div class="calc-title">🧮 Parfum YSL – Remise 30%</div>
+            <div class="calc-line"><span class="calc-op"> </span><span style="min-width:160px;font-size:.84rem;">Prix initial</span><div class="calc-field editable" contenteditable="true" data-placeholder="88,00 €"></div></div>
+            <div class="calc-line"><span class="calc-op">×</span><span style="min-width:160px;font-size:.84rem;">Montant de la remise (30%)</span><div class="calc-field editable" contenteditable="true" data-placeholder="... €"></div></div>
+            <div class="calc-line"><span class="calc-op">=</span><span style="min-width:160px;font-size:.84rem;font-weight:700;">Prix soldé</span><div class="calc-field editable" contenteditable="true" data-placeholder="... €"></div></div>
+          </div>
+          <li><strong>Tâche 2 :</strong> Calcule le <strong>prix soldé de la crème Charlotte Tilbury</strong> après -20%.</li>
+          <div class="calc-box" style="margin:6px 0 8px;">
+            <div class="calc-title">🧮 Crème Charlotte Tilbury – Remise 20%</div>
+            <div class="calc-line"><span class="calc-op"> </span><span style="min-width:160px;font-size:.84rem;">Prix initial</span><div class="calc-field editable" contenteditable="true" data-placeholder="55,00 €"></div></div>
+            <div class="calc-line"><span class="calc-op">×</span><span style="min-width:160px;font-size:.84rem;">Montant de la remise (20%)</span><div class="calc-field editable" contenteditable="true" data-placeholder="... €"></div></div>
+            <div class="calc-line"><span class="calc-op">=</span><span style="min-width:160px;font-size:.84rem;font-weight:700;">Prix soldé</span><div class="calc-field editable" contenteditable="true" data-placeholder="... €"></div></div>
+          </div>
+          <li><strong>Tâche 3 :</strong> Calcule le <strong>total de la transaction</strong> (2 articles soldés + 1 hors soldes). Complète l'annexe A2.</li>
+          <li><strong>Tâche 4 :</strong> Le client te demande : <em>"C'est quoi exactement la différence entre une remise de 30% et un article à moitié prix ?"</em> Explique-lui simplement.</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+        </ol>
+      </div>
+      <div><div class="block-label res">🟢 Ressources</div>
+        <div class="res-box">
+          <div class="res-title">🧮 Ressource 2 – Calcul d'une remise</div>
+          <ul>
+            <li><strong>Montant de la remise</strong> = Prix initial × Taux de remise / 100</li>
+            <li><strong>Prix soldé</strong> = Prix initial − Montant de la remise</li>
+            <li>OU : Prix soldé = Prix initial × (1 − taux/100)</li>
+            <li>Exemple : 80 € avec -25% → 80 × 0,75 = 60 €</li>
+            <li>⚠️ La remise s'applique toujours sur le prix TTC affiché</li>
+          </ul>
+        </div>
+      </div>
+      <div><div class="block-label ann">🟣 Annexe A2 – Récapitulatif transaction soldée</div>
+        <div class="ann-box">
+          <div class="ann-title">Annexe A2 – À compléter</div>
+          <table class="ann-table">
+            <tr><th>Article</th><th>Prix initial</th><th>Remise</th><th>Prix soldé</th></tr>
+            <tr><td>Parfum YSL Libre</td><td>88,00 €</td><td class="editable" contenteditable="true" data-placeholder="..."></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+            <tr><td>Crème Charlotte Tilbury</td><td>55,00 €</td><td class="editable" contenteditable="true" data-placeholder="..."></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+            <tr><td>Rouge à lèvres Chanel</td><td>38,00 €</td><td>—</td><td>38,00 €</td></tr>
+            <tr><td colspan="3"><strong>TOTAL À PAYER</strong></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+          </table>
+        </div>
+      </div>
+      <div><div class="block-label auto">🔴 Autoévaluation</div>
+        <table class="ae-table">
+          <thead><tr><th>Critère</th><th class="chk-col">✅ Oui</th><th class="chk-col">⚠️ Part.</th><th class="chk-col">❌ Non</th></tr></thead>
+          <tbody>
+            <tr><td>Le prix soldé YSL est correct</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>Le prix soldé Charlotte Tilbury est correct</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>Le total est correct</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>L'explication remise vs moitié prix est claire et juste</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+          </tbody>
+        </table>
+        <div class="ae-legend"><span><span class="ae-dot oui"></span>Oui</span><span><span class="ae-dot part"></span>Partiellement</span><span><span class="ae-dot non"></span>Non</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- M1.3 -->
+  <div class="mission p1">
+    <div class="mission-header" onclick="tog(this)">
+      <span class="mission-num">M3</span>
+      <div><h3>Problème en caisse ! – Gérer une erreur d'encaissement</h3><div class="msub">Erreur caisse · Réclamation · Procédure · Sang-froid</div></div>
+      <span class="mission-tag">Incident</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="mission-body">
+      <div><div class="block-label ctx">🟡 Contexte</div>
+        <div class="ctx-box">
+          <p>Une cliente revient 10 minutes après son passage en caisse. Elle est mécontente :</p>
+          <div class="bubble client">"Excusez-moi, j'ai vérifié mon ticket et vous m'avez compté deux fois le même sérum — 34 € en double ! Je n'en ai acheté qu'un seul."</div>
+          <p style="margin-top:10px;">Tu regardes le ticket : c'est vrai, le sérum a été scanné deux fois par erreur. Inès n'est pas disponible tout de suite.</p>
+          <div class="bubble mgr">"En cas d'erreur de caisse avérée, tu ne remboursas jamais seul(e) — tu demandes l'intervention d'un(e) responsable pour valider le remboursement. Mais c'est toi qui gères la relation client en attendant."</div>
+        </div>
+      </div>
+      <div><div class="block-label tsk">🔵 Tes tâches</div>
+        <ol class="task-list">
+          <li><strong>Tâche 1 :</strong> Accueille le mécontentement de la cliente avec empathie. Écris ta formule d'accueil.</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+          <li><strong>Tâche 2 :</strong> Vérifie le ticket et confirme l'erreur. Quelle formule utilises-tu pour reconnaître l'erreur sans t'effondrer en excuses ?</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+          <li><strong>Tâche 3 :</strong> Explique à la cliente ce que tu vas faire concrètement et dans quel délai. (Tu ne peux pas rembourser seul(e).)</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+          <li><strong>Tâche 4 :</strong> Calcule le <strong>montant du remboursement</strong> dû à la cliente (1 sérum à 34 €).</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+          <li><strong>Tâche 5 :</strong> Complète l'annexe A3 – fiche d'incident caisse.</li>
+        </ol>
+      </div>
+      <div><div class="block-label ann">🟣 Annexe A3 – Fiche d'incident caisse</div>
+        <div class="ann-box">
+          <div class="ann-title">Annexe A3 – À compléter pour tout incident</div>
+          <table class="ann-table">
+            <tr><td style="width:38%"><strong>Date et heure</strong></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+            <tr><td><strong>Nature de l'incident</strong></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+            <tr><td><strong>Article concerné</strong></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+            <tr><td><strong>Montant de l'erreur</strong></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+            <tr><td><strong>Action effectuée</strong></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+            <tr><td><strong>Responsable ayant validé</strong></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+            <tr><td><strong>Satisfaction client obtenue</strong></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+          </table>
+        </div>
+      </div>
+      <div><div class="block-label auto">🔴 Autoévaluation</div>
+        <table class="ae-table">
+          <thead><tr><th>Critère</th><th class="chk-col">✅ Oui</th><th class="chk-col">⚠️ Part.</th><th class="chk-col">❌ Non</th></tr></thead>
+          <tbody>
+            <tr><td>J'ai accueilli le mécontentement avec empathie sans m'effondrer</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>J'ai reconnu l'erreur de façon professionnelle</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>Je n'ai pas tenté de rembourser seul(e) sans responsable</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>Le montant du remboursement est correct</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>La fiche incident est complète</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+          </tbody>
+        </table>
+        <div class="ae-legend"><span><span class="ae-dot oui"></span>Oui</span><span><span class="ae-dot part"></span>Partiellement</span><span><span class="ae-dot non"></span>Non</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PÔLE 2 – MERCHANDISING ===== -->
+<div class="section" id="pole2">
+  <div class="pole-header p2">
+    <div class="pole-big-num">02</div>
+    <div>
+      <h2>Pôle 2 – Merchandising & mise en rayon</h2>
+      <p>Compétences travaillées : réimplanter un linéaire, créer une mise en avant promotionnelle, étiqueter les produits et contrôler les prix selon les règles de merchandising Séphora.</p>
+    </div>
+  </div>
+
+  <!-- M2.1 -->
+  <div class="mission p2">
+    <div class="mission-header" onclick="tog(this)">
+      <span class="mission-num">M1</span>
+      <div><h3>Le rayon parfums est en désordre – Réimplanter un linéaire</h3><div class="msub">Implantation · Critères de rangement · Facing · Rotation</div></div>
+      <span class="mission-tag">Linéaire</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="mission-body">
+      <div><div class="block-label ctx">🟡 Contexte</div>
+        <div class="ctx-box">
+          <p>En arrivant le matin, tu constates que le présentoir parfums femmes est en désordre après le week-end chargé. Des flacons sont mal placés, certains sont retournés, les étiquettes de prix ne correspondent plus aux emplacements.</p>
+          <div class="bubble mgr">"Chez Séphora, les parfums sont organisés par marque, puis par gamme, puis par contenance (du plus petit au plus grand de gauche à droite). Les bestsellers sont mis en avant au niveau des yeux (entre 120 et 160 cm). Tu réimplantes le présentoir avant l'ouverture."</div>
+          <p style="margin-top:10px;">Tu disposes de 12 flacons à replacer sur 3 étagères (4 flacons par étagère).</p>
+        </div>
+      </div>
+      <div><div class="block-label tsk">🔵 Tes tâches</div>
+        <ol class="task-list">
+          <li><strong>Tâche 1 :</strong> Cite les <strong>3 critères principaux</strong> de rangement des parfums chez Séphora selon les consignes d'Inès.</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+          <li><strong>Tâche 2 :</strong> Sur quel niveau d'étagère places-tu les <strong>bestsellers</strong> et pourquoi ? (utilise le vocabulaire merchandising)</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+          <li><strong>Tâche 3 :</strong> Complète l'annexe B1 – plan d'implantation du présentoir 3 étagères.</li>
+          <li><strong>Tâche 4 :</strong> Inès te demande d'expliquer ce qu'est le <strong>facing</strong> et pourquoi c'est important. Réponds en 3 phrases.</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+          <li><strong>Tâche 5 :</strong> Une fois le présentoir réimplanté, comment vérifies-tu que tout est conforme avant l'ouverture ? Liste 3 vérifications.</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+        </ol>
+      </div>
+      <div><div class="block-label res">🟢 Ressources</div>
+        <div class="res-box">
+          <div class="res-title">🖼️ Ressource 3 – Règles de merchandising Séphora</div>
+          <ul>
+            <li><strong>Zones de chalandise :</strong> niveau yeux (120–160 cm) = zone chaude = produits phares / niveau mains (80–120 cm) = zone intermédiaire / niveau sol et haut = zones froides</li>
+            <li><strong>Facing :</strong> nombre de fois où un produit est présenté de face sur le linéaire — minimum 2 facings par référence chez Séphora</li>
+            <li><strong>Organisation :</strong> par marque > par gamme > du plus petit au plus grand (gauche → droite)</li>
+            <li><strong>Propreté :</strong> flacons orientés face client, étiquette visible, pas de poussière</li>
+            <li><strong>Réassort :</strong> vérifier les ruptures et signaler toute absence de stock</li>
+          </ul>
+        </div>
+      </div>
+      <div><div class="block-label ann">🟣 Annexe B1 – Plan d'implantation du présentoir (3 étagères)</div>
+        <div class="ann-box">
+          <div class="ann-title">Annexe B1 – Complète le plan (4 emplacements par étagère)</div>
+          <table class="ann-table">
+            <tr><th>Étagère</th><th>Emplacement 1</th><th>Emplacement 2</th><th>Emplacement 3</th><th>Emplacement 4</th></tr>
+            <tr><td><strong>Haut (zone froide)</strong></td><td class="editable" contenteditable="true" data-placeholder="..."></td><td class="editable" contenteditable="true" data-placeholder="..."></td><td class="editable" contenteditable="true" data-placeholder="..."></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+            <tr><td><strong>Milieu (zone chaude ★)</strong></td><td class="editable" contenteditable="true" data-placeholder="..."></td><td class="editable" contenteditable="true" data-placeholder="..."></td><td class="editable" contenteditable="true" data-placeholder="..."></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+            <tr><td><strong>Bas (zone froide)</strong></td><td class="editable" contenteditable="true" data-placeholder="..."></td><td class="editable" contenteditable="true" data-placeholder="..."></td><td class="editable" contenteditable="true" data-placeholder="..."></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+          </table>
+          <p style="font-size:.76rem;color:var(--muted);margin-top:8px;">★ Zone chaude = niveau des yeux = emplacement prioritaire pour les bestsellers</p>
+        </div>
+      </div>
+      <div><div class="block-label auto">🔴 Autoévaluation</div>
+        <table class="ae-table">
+          <thead><tr><th>Critère</th><th class="chk-col">✅ Oui</th><th class="chk-col">⚠️ Part.</th><th class="chk-col">❌ Non</th></tr></thead>
+          <tbody>
+            <tr><td>J'ai cité les 3 critères de rangement corrects</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>Les bestsellers sont placés au bon niveau</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>Le facing est défini correctement en 3 phrases</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>Le plan d'implantation B1 est cohérent et justifié</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+          </tbody>
+        </table>
+        <div class="ae-legend"><span><span class="ae-dot oui"></span>Oui</span><span><span class="ae-dot part"></span>Partiellement</span><span><span class="ae-dot non"></span>Non</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- M2.2 -->
+  <div class="mission p2">
+    <div class="mission-header" onclick="tog(this)">
+      <span class="mission-num">M2</span>
+      <div><h3>Opération Saint-Valentin – Créer une mise en avant</h3><div class="msub">Théâtralisation · Mise en avant · ILV · Sélection produits</div></div>
+      <span class="mission-tag">Promo</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="mission-body">
+      <div><div class="block-label ctx">🟡 Contexte</div>
+        <div class="ctx-box">
+          <p>La Saint-Valentin arrive dans 10 jours. Inès te confie une mission :</p>
+          <div class="bubble mgr">"Je veux une mise en avant Saint-Valentin à l'entrée du magasin. Sélectionne 5 produits cadeaux entre 20 et 80 €, crée le fond de gondole avec l'ILV qui va bien, et prépare l'affiche promotionnelle. Budget déco : 0 € — on utilise les éléments Séphora en stock."</div>
+          <p style="margin-top:10px;">Tu disposes des PLV Séphora (bandeaux rouges, étoiles dorées), d'un présentoir 3 niveaux et du matériel d'étiquetage.</p>
+        </div>
+      </div>
+      <div><div class="block-label tsk">🔵 Tes tâches</div>
+        <ol class="task-list">
+          <li><strong>Tâche 1 :</strong> Sélectionne <strong>5 produits cadeaux</strong> pour la mise en avant (invente des articles réalistes avec marque et prix entre 20 et 80 €). Justifie chaque choix.</li>
+          <div class="resp" contenteditable="true" style="min-height:80px;" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+          <li><strong>Tâche 2 :</strong> Décris comment tu <strong>organises le présentoir 3 niveaux</strong> (quel type de produit sur quel niveau et pourquoi).</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+          <li><strong>Tâche 3 :</strong> Rédige l'<strong>ILV (Information sur le Lieu de Vente)</strong> qui accompagnera la mise en avant : titre accrocheur + 3 produits mis en avant + mention prix.</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+          <li><strong>Tâche 4 :</strong> Explique en 2 phrases ce qu'est la <strong>théâtralisation</strong> et pourquoi Séphora l'utilise à l'entrée du magasin.</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+        </ol>
+      </div>
+      <div><div class="block-label res">🟢 Ressources</div>
+        <div class="res-box">
+          <div class="res-title">✨ Ressource 4 – La théâtralisation et l'ILV</div>
+          <ul>
+            <li><strong>Théâtralisation :</strong> mise en scène des produits pour créer une émotion, raconter une histoire et attirer le regard — technique clé du merchandising premium</li>
+            <li><strong>ILV (Information sur le Lieu de Vente) :</strong> tout affichage en magasin qui informe le client (étiquette prix, bandeau promo, fiche produit, affiche événementielle)</li>
+            <li><strong>Zone d'entrée :</strong> zone de décompression + zone de découverte = premier contact visuel = impact fort sur l'achat impulsif</li>
+            <li><strong>Règle des 3 prix :</strong> proposer entrée de gamme / milieu / premium pour toucher tous les budgets</li>
+          </ul>
+        </div>
+      </div>
+      <div><div class="block-label auto">🔴 Autoévaluation</div>
+        <table class="ae-table">
+          <thead><tr><th>Critère</th><th class="chk-col">✅ Oui</th><th class="chk-col">⚠️ Part.</th><th class="chk-col">❌ Non</th></tr></thead>
+          <tbody>
+            <tr><td>5 produits sélectionnés entre 20 et 80 € avec justification</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>L'organisation des 3 niveaux est cohérente et justifiée</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>L'ILV est accrocheur, complet (titre + produits + prix)</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>La théâtralisation est définie correctement avec l'intérêt pour Séphora</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+          </tbody>
+        </table>
+        <div class="ae-legend"><span><span class="ae-dot oui"></span>Oui</span><span><span class="ae-dot part"></span>Partiellement</span><span><span class="ae-dot non"></span>Non</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- M2.3 -->
+  <div class="mission p2">
+    <div class="mission-header" onclick="tog(this)">
+      <span class="mission-num">M3</span>
+      <div><h3>Contrôle des prix – Étiqueter et vérifier la conformité</h3><div class="msub">Étiquetage · Prix TTC · Affichage obligatoire · Contrôle</div></tr></div>
+      <span class="mission-tag">Étiquetage</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="mission-body">
+      <div><div class="block-label ctx">🟡 Contexte</div>
+        <div class="ctx-box">
+          <p>Inès t'annonce qu'un contrôle de la DGCCRF (Direction Générale de la Concurrence) peut avoir lieu à tout moment. Elle te demande de vérifier l'étiquetage du rayon maquillage :</p>
+          <div class="bubble mgr">"En France, tout produit exposé à la vente DOIT avoir son prix TTC clairement affiché. C'est la loi. Si un article n'a pas d'étiquette ou si le prix en rayon ne correspond pas au prix en caisse, on est hors-la-loi. Tu passes le rayon en revue et tu signales tout écart."</div>
+          <p style="margin-top:10px;">Tu trouves <strong>4 problèmes</strong> lors de ta vérification (Annexe B2).</p>
+        </div>
+      </div>
+      <div><div class="block-label tsk">🔵 Tes tâches</div>
+        <ol class="task-list">
+          <li><strong>Tâche 1 :</strong> Quelles sont les <strong>3 informations obligatoires</strong> sur une étiquette de prix en magasin selon la loi française ?</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+          <li><strong>Tâche 2 :</strong> Complète l'annexe B2 : pour chacun des 4 problèmes trouvés, indique l'anomalie et l'action corrective.</li>
+          <li><strong>Tâche 3 :</strong> Un client te dit : <em>"En caisse on m'a fait payer 28 € mais sur le rayon c'est marqué 24 €."</em> Que lui réponds-tu ? Quelle est la règle légale ?</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+          <li><strong>Tâche 4 :</strong> Explique en 2 phrases pourquoi l'affichage des prix TTC est une obligation légale et quels risques Séphora encourt en cas de manquement.</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+        </ol>
+      </div>
+      <div><div class="block-label res">🟢 Ressources</div>
+        <div class="res-box">
+          <div class="res-title">⚖️ Ressource 5 – Affichage des prix : obligations légales</div>
+          <ul>
+            <li>Tout produit exposé à la vente doit avoir son <strong>prix TTC affiché de façon lisible et visible</strong> (arrêté du 3 décembre 1987)</li>
+            <li>Le prix affiché en rayon est le prix qui s'impose en caisse en cas de différence (principe du prix le plus favorable au consommateur)</li>
+            <li>Informations obligatoires : <strong>prix TTC</strong> + <strong>unité de vente</strong> (pièce, kg, litre…) + <strong>dénomination du produit</strong></li>
+            <li>Sanctions DGCCRF : amende jusqu'à 15 000 € + publicité du manquement</li>
+          </ul>
+        </div>
+      </div>
+      <div><div class="block-label ann">🟣 Annexe B2 – Fiche de contrôle étiquetage rayon maquillage</div>
+        <div class="ann-box">
+          <div class="ann-title">Annexe B2 – 4 anomalies à identifier et corriger</div>
+          <table class="ann-table">
+            <tr><th>#</th><th>Produit / Zone</th><th>Anomalie constatée</th><th>Action corrective</th></tr>
+            <tr><td>1</td><td>Fond de teint Maybelline</td><td class="editable" contenteditable="true" data-placeholder="..."></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+            <tr><td>2</td><td>Palette fards Huda Beauty</td><td class="editable" contenteditable="true" data-placeholder="..."></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+            <tr><td>3</td><td>Rouge à lèvres MAC</td><td class="editable" contenteditable="true" data-placeholder="..."></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+            <tr><td>4</td><td>Crayon yeux NYX</td><td class="editable" contenteditable="true" data-placeholder="..."></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+          </table>
+        </div>
+      </div>
+      <div><div class="block-label auto">🔴 Autoévaluation</div>
+        <table class="ae-table">
+          <thead><tr><th>Critère</th><th class="chk-col">✅ Oui</th><th class="chk-col">⚠️ Part.</th><th class="chk-col">❌ Non</th></tr></thead>
+          <tbody>
+            <tr><td>J'ai cité les informations obligatoires sur l'étiquette</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>J'ai identifié les anomalies avec leur action corrective</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>J'ai cité la règle légale correctement</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>J'ai cité les risques pour l'enseigne</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+          </tbody>
+        </table>
+        <div class="ae-legend"><span><span class="ae-dot oui"></span>Oui</span><span><span class="ae-dot part"></span>Partiellement</span><span><span class="ae-dot non"></span>Non</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PÔLE 3 – COMMUNICATION ===== -->
+<div class="section" id="pole3">
+  <div class="pole-header p3">
+    <div class="pole-big-num">03</div>
+    <div>
+      <h2>Pôle 3 – Communication & réseaux sociaux</h2>
+      <p>Compétences travaillées : rédiger des contenus Instagram adaptés à une enseigne premium, créer des stories engageantes, gérer l'e-réputation en répondant aux avis clients.</p>
+    </div>
+  </div>
+
+  <!-- M3.1 -->
+  <div class="mission p3">
+    <div class="mission-header" onclick="tog(this)">
+      <span class="mission-num">M1</span>
+      <div><h3>Nouveau produit en magasin – Rédiger un post Instagram</h3><div class="msub">Copywriting · Ton de marque · Hashtags · Appel à l'action</div></div>
+      <span class="mission-tag">Instagram</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="mission-body">
+      <div><div class="block-label ctx">🟡 Contexte</div>
+        <div class="ctx-box">
+          <p>Séphora Épinal vient de recevoir en exclusivité une nouvelle gamme de soins visage <strong>« Glow Lab »</strong> — des soins bio, éco-conçus, à base d'actifs naturels. C'est Léa, conseillère beauté, qui t'explique :</p>
+          <div class="bubble">"On veut annoncer ça sur notre Instagram local @sephoraepinal. Ton post doit faire envie, coller à l'image premium de Séphora, et donner aux gens une raison de venir en boutique. Pas de majuscules intempestives, pas de fautes — Séphora c'est du luxe accessible."</div>
+          <p style="margin-top:10px;">La gamme Glow Lab comprend : sérum éclat 45 €, crème hydratante 38 €, masque 29 €. Disponible dès aujourd'hui.</p>
+        </div>
+      </div>
+      <div><div class="block-label tsk">🔵 Tes tâches</div>
+        <ol class="task-list">
+          <li><strong>Tâche 1 :</strong> Rédige le <strong>post Instagram complet</strong> (Annexe C1) pour annoncer l'arrivée de la gamme Glow Lab. Maximum 200 mots : accroche + description + appel à l'action + hashtags.</li>
+          <li><strong>Tâche 2 :</strong> Explique pourquoi le ton d'une enseigne comme Séphora doit rester <strong>élégant et maîtrisé</strong> sur les réseaux, même pour un magasin local. Cite 2 raisons.</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+          <li><strong>Tâche 3 :</strong> Propose <strong>8 hashtags</strong> pertinents pour ce post (mix hashtags marque + beauté + local).</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+          <li><strong>Tâche 4 :</strong> Quel est le meilleur moment de la journée pour publier ce post et pourquoi ? (Pense à la cible clientèle de Séphora.)</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+        </ol>
+      </div>
+      <div><div class="block-label ann">🟣 Annexe C1 – Post Instagram Glow Lab</div>
+        <div class="ann-box">
+          <div class="ann-title">Annexe C1 – Rédige le post complet</div>
+          <div class="editable" contenteditable="true" style="min-height:120px;" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+        </div>
+      </div>
+      <div><div class="block-label auto">🔴 Autoévaluation</div>
+        <table class="ae-table">
+          <thead><tr><th>Critère</th><th class="chk-col">✅ Oui</th><th class="chk-col">⚠️ Part.</th><th class="chk-col">❌ Non</th></tr></thead>
+          <tbody>
+            <tr><td>Le post a une accroche forte, une description et un CTA</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>Le ton est élégant, sans fautes, cohérent avec Séphora</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>J'ai proposé des hashtags en mix pertinent</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>Le créneau de publication est justifié avec la cible</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+          </tbody>
+        </table>
+        <div class="ae-legend"><span><span class="ae-dot oui"></span>Oui</span><span><span class="ae-dot part"></span>Partiellement</span><span><span class="ae-dot non"></span>Non</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- M3.2 -->
+  <div class="mission p3">
+    <div class="mission-header" onclick="tog(this)">
+      <span class="mission-num">M2</span>
+      <div><h3>Promo Flash ! – Créer un contenu story pour une offre limitée</h3><div class="msub">Story Instagram · Urgence · Format vertical · Canva</div></div>
+      <span class="mission-tag">Story</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="mission-body">
+      <div><div class="block-label ctx">🟡 Contexte</div>
+        <div class="ctx-box">
+          <p>Inès a une idée pour booster le chiffre d'affaires ce samedi :</p>
+          <div class="bubble mgr">"On fait une promo flash aujourd'hui seulement : -25% sur tous les coffrets cadeaux dès 14h. Je veux une story Instagram pour l'annoncer — tu as 30 minutes. Crée-la sur Canva, format story (1080×1920px), et dépose-la sur ton Digipad personnel."</div>
+          <p style="margin-top:10px;">Contraintes : le logo Séphora ne peut pas être utilisé (droits de marque). Tu crées une story pour le compte local fictif <strong>@sephoraepinal</strong> avec les couleurs noir et or de l'enseigne.</p>
+        </div>
+      </div>
+      <div><div class="block-label tsk">🔵 Tes tâches</div>
+        <ol class="task-list">
+          <li><strong>Tâche 1 :</strong> Avant de te lancer sur Canva, liste les <strong>5 éléments indispensables</strong> que ta story doit contenir.</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+          <li><strong>Tâche 2 :</strong> Rédige le <strong>texte exact</strong> qui apparaîtra sur ta story (max 20 mots visibles — une story se lit en 3 secondes).</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+          <li><strong>Tâche 3 :</strong> Crée la story sur <strong>Canva</strong> (format 1080×1920px, couleurs noir/or). Exporte en <strong>PDF</strong> et dépose sur ton <strong>Digipad personnel</strong>.</li>
+          <li><strong>Tâche 4 :</strong> Justifie tes <strong>choix graphiques</strong> (couleurs, typographie, mise en page) en lien avec l'image de marque Séphora.</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+          <li><strong>Tâche 5 :</strong> Pourquoi le format story est-il plus efficace qu'un post classique pour annoncer une promo flash ? Cite 2 arguments.</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+        </ol>
+      </div>
+      <div><div class="block-label res">🟢 Ressources</div>
+        <div class="res-box">
+          <div class="res-title">📱 Ressource 6 – Les spécificités d'une story Instagram</div>
+          <ul>
+            <li><strong>Format :</strong> 1080×1920px (9:16) · vertical · plein écran</li>
+            <li><strong>Durée d'affichage :</strong> 5 secondes (photo) → message doit être lisible instantanément</li>
+            <li><strong>Urgence :</strong> la story disparaît après 24h → crée naturellement un sentiment d'urgence</li>
+            <li><strong>Interaction :</strong> sondage, compte à rebours, lien cliquable, question = taux d'engagement x3 vs post</li>
+            <li><strong>Identité visuelle :</strong> respecter les couleurs de la charte graphique (Séphora : noir #000000, or #C9A84C, blanc)</li>
+          </ul>
+        </div>
+      </div>
+      <div><div class="block-label auto">🔴 Autoévaluation</div>
+        <table class="ae-table">
+          <thead><tr><th>Critère</th><th class="chk-col">✅ Oui</th><th class="chk-col">⚠️ Part.</th><th class="chk-col">❌ Non</th></tr></thead>
+          <tbody>
+            <tr><td>Les 5 éléments indispensables sont identifiés</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>Le texte story est sous 20 mots, lisible et percutant</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>La story Canva est créée, exportée en PDF et déposée sur le Digipad</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>Les choix graphiques sont justifiés avec la charte Séphora</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>2 arguments sur l'efficacité story vs post sont pertinents</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+          </tbody>
+        </table>
+        <div class="ae-legend"><span><span class="ae-dot oui"></span>Oui</span><span><span class="ae-dot part"></span>Partiellement</span><span><span class="ae-dot non"></span>Non</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- M3.3 -->
+  <div class="mission p3">
+    <div class="mission-header" onclick="tog(this)">
+      <span class="mission-num">M3</span>
+      <div><h3>Avis client négatif – Répondre en ligne avec professionnalisme</h3><div class="msub">E-réputation · Réponse client · Ton de marque · Google Avis</div></div>
+      <span class="mission-tag">E-réputation</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="mission-body">
+      <div><div class="block-label ctx">🟡 Contexte</div>
+        <div class="ctx-box">
+          <p>En consultant la page Google de Séphora Épinal, Inès découvre un avis 2 étoiles posté hier soir :</p>
+          <div class="bubble client">⭐⭐ — "Très déçue de ma visite. J'ai attendu 20 minutes avant qu'une conseillère vienne me voir, alors que le magasin était à moitié vide. Et à la caisse, on m'a proposé 3 fois la carte de fidélité alors que j'ai dit non. Personnel insistant et boutique en désordre. Je ne reviendrai pas."</div>
+          <p style="margin-top:10px;">Inès te demande de rédiger la réponse officielle de la boutique :</p>
+          <div class="bubble mgr">"On répond TOUJOURS aux avis négatifs — jamais on ne les ignore. Ton texte doit être sobre, professionnel, empathique. Pas d'excuse excessive, pas d'attaque. C'est une réponse publique visible par tous nos futurs clients."</div>
+        </div>
+      </div>
+      <div><div class="block-label tsk">🔵 Tes tâches</div>
+        <ol class="task-list">
+          <li><strong>Tâche 1 :</strong> Identifie les <strong>3 griefs distincts</strong> de la cliente dans son avis. Liste-les.</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+          <li><strong>Tâche 2 :</strong> Rédige la <strong>réponse officielle complète</strong> à cet avis Google (Annexe C2). Maximum 80 mots. Ton : professionnel, empathique, sans attaque.</li>
+          <li><strong>Tâche 3 :</strong> Explique pourquoi il est important de répondre aux avis négatifs pour l'image d'une enseigne comme Séphora. Cite 2 raisons concrètes.</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+          <li><strong>Tâche 4 :</strong> La même cliente a aussi laissé un avis 5 étoiles sur un autre produit. Rédige une courte réponse de remerciement (30 mots max) qui fidélise.</li>
+          <div class="resp" contenteditable="true" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+        </ol>
+      </div>
+      <div><div class="block-label ann">🟣 Annexe C2 – Réponse à l'avis Google négatif</div>
+        <div class="ann-box">
+          <div class="ann-title">Annexe C2 – Réponse officielle à rédiger (80 mots max)</div>
+          <p style="font-size:.8rem;color:var(--muted);margin-bottom:10px;">Avis reçu : <em>⭐⭐ "Très déçue de ma visite. J'ai attendu 20 minutes..."</em></p>
+          <div class="editable" contenteditable="true" style="min-height:90px;" data-placeholder="✏️ Rédigez votre réponse ici..."></div>
+        </div>
+      </div>
+      <div><div class="block-label auto">🔴 Autoévaluation</div>
+        <table class="ae-table">
+          <thead><tr><th>Critère</th><th class="chk-col">✅ Oui</th><th class="chk-col">⚠️ Part.</th><th class="chk-col">❌ Non</th></tr></thead>
+          <tbody>
+            <tr><td>Les 3 griefs sont correctement identifiés</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>La réponse est ≤ 80 mots, professionnelle et empathique</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>La réponse ne contient ni attaque ni excuse excessive</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>2 raisons de répondre aux avis négatifs sont pertinentes</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+            <tr><td>La réponse à l'avis positif est chaleureuse et fidélisante</td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td><td class="chk-col"><div class="chk-cell"><button class="chk-btn" onclick="chk(this)"> </button></div></td></tr>
+          </tbody>
+        </table>
+        <div class="ae-legend"><span><span class="ae-dot oui"></span>Oui</span><span><span class="ae-dot part"></span>Partiellement</span><span><span class="ae-dot non"></span>Non</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- .main -->
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function tog(header) {
+  header.parentElement.classList.toggle('open');
+}
+function chk(btn) {
+  const cell = btn.closest('.chk-cell');
+  const row = btn.closest('tr');
+  const cells = row.querySelectorAll('.chk-col');
+  let colIndex = -1;
+  cells.forEach((c, i) => { if (c.contains(btn)) colIndex = i; });
+  const types = ['oui', 'part', 'non'];
+  const type = types[colIndex - 1] || 'oui';
+  // Toggle : si déjà actif, désactiver ; sinon activer et désactiver les autres de la ligne
+  if (btn.classList.contains(type)) {
+    btn.classList.remove(type);
+  } else {
+    row.querySelectorAll('.chk-btn').forEach(b => b.classList.remove('oui','part','non'));
+    btn.classList.add(type);
+  }
+}
+</script>
+</body>
+</html>
